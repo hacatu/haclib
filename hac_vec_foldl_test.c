@@ -7,6 +7,9 @@
  *  Foldl
  */
 
+/* Reverses a vector using foldl
+ */
+
 int main(void){
 	HAC_VEC_T_NEW(int);
 	HAC_VEC_T(int) vec = HAC_VEC_RANGE(int, 1, 10, 1);

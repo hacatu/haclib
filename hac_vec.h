@@ -35,10 +35,18 @@
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
 	base_t *_tmp = _vec->a;                                            \
 	if(_vec->n + 1 > _vec->m){                                         \
-		_tmp = realloc(_vec->a, _vec->m*HAC_VEC_G_RATIO*sizeof(base_t));\
-		if(_tmp){                                                      \
-			_vec->a = _tmp;                                            \
-			_vec->m *= HAC_VEC_G_RATIO;                                \
+		if(_vec->m){                                                   \
+			_tmp = realloc(_vec->a, _vec->m*HAC_VEC_G_RATIO*sizeof(base_t));\
+			if(_tmp){                                                  \
+				_vec->a = _tmp;                                        \
+				_vec->m *= HAC_VEC_G_RATIO;                            \
+			}                                                          \
+		}else{                                                         \
+			_vec->a = malloc(1*sizeof(base_t));                        \
+			if(_vec->a){                                               \
+				_tmp = _vec->a;                                        \
+				_vec->m = 1;                                           \
+			}                                                          \
 		}                                                              \
 	}                                                                  \
 	if(_tmp){                                                          \

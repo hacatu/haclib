@@ -7,6 +7,9 @@
  *  Range, Foldr
  */
 
+/* Finds the gcd of all numbers from 1 to 10 using foldr
+ */
+
 int gcd(int a, int b){
 	if(a > b){
 		return gcd(b, a);

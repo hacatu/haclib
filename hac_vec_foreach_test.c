@@ -11,6 +11,9 @@
  *  ALL
  */
 
+/* Finds all prime numbers under 100 using a vector
+ */
+
 int main(void){
 	HAC_VEC_T_NEW(int);
 	HAC_VEC_T(int) vec = HAC_VEC_FROM(int, 1, &(int[1]){2});

@@ -1,6 +1,6 @@
 //_hac_vec_monoid.h
 #define /*int*/HAC_VEC_IS_EMPTY(base_t, /*HAC_VEC_T**/vec) (!(vec)->n)
-#define /*HAC_VEC_T*/HAC_VEC_EMPTY(base_t) HAC_VEC_NEW(base_t, 0)
+#define /*HAC_VEC_T*/HAC_VEC_EMPTY(base_t) ((HAC_VEC_T(base_t)){0})
 #define /*HAC_VEC_T*/HAC_VEC_COMBINE(base_t, veca, vecb) ({            \
 	const HAC_VEC_T(base_t) *_a = (veca), *_b = (vecb);                \
 	HAC_VEC_T(basse_t) _c = __HAC_VEC_NEW(base_t, _a->n + _b->n);      \
