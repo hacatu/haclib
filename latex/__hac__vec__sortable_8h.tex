@@ -1,0 +1,248 @@
+\hypertarget{__hac__vec__sortable_8h}{}\section{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h File Reference}
+\label{__hac__vec__sortable_8h}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X}(base\+\_\+t,  vec,  i1,  i2,  comp)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P}(base\+\_\+t,  vec,  i1,  i2,  comp,  swap)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T}(base\+\_\+t,  vec,  i1,  i2,  comp,  swap)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T}(base\+\_\+t,  vec,  i1,  i2,  comp)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N}(base\+\_\+t,  vec,  i1,  i2,  comp,  swap)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P}(base\+\_\+t,  vec,  tps,  comp,  swap)
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T}(base\+\_\+t,  vec,  i1,  i2,  comp,  swap)
+\item 
+\#define \hyperlink{__hac__vec__sortable_8h_aef9166740d3bad563e34c40ab29834c4}{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T}(base\+\_\+t,  vec,  comp,  swap)
+\begin{DoxyCompactList}\small\item\em Sorts a vector. Uses quicksort, modified to fall back to selection sort if the size of the part being sorted is less than or equal to 7. Because it is written using only macros, there is obviously no recursion. Instead, the left half is iteratively quicksorted and the right half is popped onto a vector of start/end pairs to be processed when this iteration is finished. This is looped as long as the vector of pairs is not empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{__hac__vec__sortable_8h_a2607989eac0518b8ae16918efe12671f}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+A\+M\+A\+X(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_a2607989eac0518b8ae16918efe12671f}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\(\backslash\)
+    size\_t \_amax = i1;                                                 \(\backslash\)
+    base\_t \_max = vec->a[i1], e1, e2;                                  \(\backslash\)
+    for(\textcolor{keywordtype}{size\_t} \_i = i1 + 1; \_i < i2; ++\_i)\{                            \(\backslash\)
+        e1 = \_max;                                                     \(\backslash\)
+        e2 = vec->a[\_i];                                               \(\backslash\)
+        if((\{comp;\}) > 0)\{                                             \(\backslash\)
+            \_max = vec->a[\_i];                                         \(\backslash\)
+            \_amax = \_i;                                                \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_amax;                                                             \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_a4c128922034c6d52470b1f32d4600c0f}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_a4c128922034c6d52470b1f32d4600c0f}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\(\backslash\)
+    size\_t \_a = i1, \_b = i2 - 1, i, j;                                 \(\backslash\)
+    base\_t \_p = \_\_HAC\_VEC\_PIVOT(base\_t, vec, i1, i2, comp), e1, e2;    \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) *v = vec;                                        \(\backslash\)
+    while(\_b > \_a)\{                                                    \(\backslash\)
+        e1 = \_p;                                                       \(\backslash\)
+        e2 = vec->a[\_a];                                               \(\backslash\)
+        if((\{comp;\}) >= 0)\{                                            \(\backslash\)
+            (\{i = \_a; j = \_b; swap;\});                                 \(\backslash\)
+            --\_b;                                                      \(\backslash\)
+        \}\textcolor{keywordflow}{else}\{                                                         \(\backslash\)
+            ++\_a;                                                      \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_a;                                                                \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_a39fe160260d25ca43d178afe49ff31a8}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+I\+V\+O\+T(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_a39fe160260d25ca43d178afe49ff31a8}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\(\backslash\)
+    size\_t \_mi = (i1 + i2)/2;                                          \(\backslash\)
+    base\_t \_a = vec->a[i1], \_b = vec->a[i2 - 1], \_m = vec->a[\_mi], e1, e2;\(\backslash\)
+    ((\{e1 = \_m; e2 = \_b; comp;\}) >= 0) ? (                             \(\backslash\)
+        ((\{e1 = \_m; e2 = \_a; comp;\}) >= 0) ? (                         \(\backslash\)
+            ((\{e1 = \_b; e2 = \_a; comp;\}) >= 0) ? (                     \(\backslash\)
+                \_b                                                     \(\backslash\)
+            ):(                                                        \(\backslash\)
+                \_a                                                     \(\backslash\)
+            )                                                          \(\backslash\)
+        ):(                                                            \(\backslash\)
+            \_m                                                         \(\backslash\)
+        )                                                              \(\backslash\)
+    ):(                                                                \(\backslash\)
+        ((\{e1 = \_m; e2 = \_a; comp;\}) >= 0) ? (                         \(\backslash\)
+            \_m                                                         \(\backslash\)
+        ):(                                                            \(\backslash\)
+            ((\{e1 = \_b; e2 = \_a; comp;\}) >= 0) ? (                     \(\backslash\)
+                \_a                                                     \(\backslash\)
+            ):(                                                        \(\backslash\)
+                \_b                                                     \(\backslash\)
+            )                                                          \(\backslash\)
+        )                                                              \(\backslash\)
+    );                                                                 \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_a1fa78b8c1167ce63a0d02f65ad34721a}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+O\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_a1fa78b8c1167ce63a0d02f65ad34721a}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\hyperlink{hac__pair_8h_a000b68bf25e4390f4ca6542f70f89a57}{\(\backslash\)}
+\hyperlink{hac__pair_8h_a000b68bf25e4390f4ca6542f70f89a57}{    HAC\_PAIR\_T\_NEW}(\textcolor{keywordtype}{size\_t});                                            
+      \hyperlink{hac__vec_8h_aa6d0df8e5fe9bad5c6c28b0e89f720e3}{\(\backslash\)}
+\hyperlink{hac__vec_8h_aa6d0df8e5fe9bad5c6c28b0e89f720e3}{    HAC\_VEC\_T\_NEW}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}));                                 
+      \hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{\(\backslash\)}
+\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{    HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}) \_tpa[1] = \{\hyperlink{hac__pair_8h_a2f871dad0075ccc8a629d9ee4e43114c}{HAC\_PAIR\_MAKE}(\textcolor{keywordtype}{size\_t}, i1, i2)\};      
+      \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t})) \_tps = \hyperlink{__hac__vec__base_8h_a1aa0a2cb358c1f037c7d119f37e96a63}{HAC\_VEC\_FROM}(
+      \hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}), 1, \_tpa);\(\backslash\)
+    while(\hyperlink{hac__vec_8h_a788042553f564d879e5a62374a0bbc18}{HAC\_VEC\_LEN}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}), &\_tps))\{                     \(\backslash\)
+        \_\_HAC\_VEC\_QSTEP(base\_t, vec, &\_tps, comp, swap);               \(\backslash\)
+    \}                                                                  \hyperlink{__hac__vec__base_8h_a1483fd7aa6e7aa362f15b875181febb6}{\(\backslash\)}
+\hyperlink{__hac__vec__base_8h_a1483fd7aa6e7aa362f15b875181febb6}{    HAC\_VEC\_DELETE}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}), &\_tps);                         \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_ab60aada7195950085206278e99ec4846}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+Q\+S\+T\+E\+P(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{tps, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_ab60aada7195950085206278e99ec4846}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{\(\backslash\)}
+\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{    HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}) \_ab = \hyperlink{__hac__vec__forward_8h_ace6c51e587f433cf68fb17ce56853f53}{HAC\_VEC\_POPR}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}), tps);    \(\backslash\)
+    \textcolor{keywordtype}{size\_t} \_a = \_ab.a, \_b = \_ab.b, \_p;                                 \(\backslash\)
+    while(\_b - \_a > 7)\{                                                \(\backslash\)
+        \_p = \_\_HAC\_VEC\_PARTITION(base\_t, vec, \_ab.a, \_ab.b, comp, swap);\hyperlink{hac__vec_8h_aed8256d48536555bc17cb7f777b57ab9}{\(\backslash\)}
+\hyperlink{hac__vec_8h_aed8256d48536555bc17cb7f777b57ab9}{        HAC\_VEC\_PUSHR}(\hyperlink{hac__pair_8h_aa1855678a62910851b9a9ed4170f47ba}{HAC\_PAIR\_T}(\textcolor{keywordtype}{size\_t}), tps, 
+      \hyperlink{hac__pair_8h_a2f871dad0075ccc8a629d9ee4e43114c}{HAC\_PAIR\_MAKE}(\textcolor{keywordtype}{size\_t}, \_p, \_b));\(\backslash\)
+        \_b = \_p;                                                       \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_\_HAC\_VEC\_SSORT(base\_t, vec, \_a, \_b, comp, swap);                  \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_a607b2cd3274d50f64dbaacec8f5e91f4}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+O\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_a607b2cd3274d50f64dbaacec8f5e91f4}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\(\backslash\)
+    for(\textcolor{keywordtype}{size\_t} \_i = i1; \_i < i2; ++\_i)\{                                \(\backslash\)
+        \_\_HAC\_VEC\_SSTEP(base\_t, vec, \_i, i2, comp, swap);              \(\backslash\)
+    \}                                                                  \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_abf1e5fb467250859e9cb968aa47a3e9c}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+S\+T\+E\+P(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_abf1e5fb467250859e9cb968aa47a3e9c}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) *v = vec;                                        \(\backslash\)
+    size\_t j = \_\_HAC\_VEC\_AMAX(base\_t, vec, i1, i2, comp), i = i1;      \(\backslash\)
+    (\{swap;\});                                                         \hyperlink{hac__util_8h_a967927e80dbd5c8582df04345c4c181c}{\(\backslash\)}
+\hyperlink{hac__util_8h_a967927e80dbd5c8582df04345c4c181c}{    returnvoid};                                                        \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{__hac__vec__sortable_8h_aef9166740d3bad563e34c40ab29834c4}{}\index{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}!H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T}}
+\index{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T}!\+\_\+hac\+\_\+vec\+\_\+sortable.\+h@{\+\_\+hac\+\_\+vec\+\_\+sortable.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+S\+O\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{comp, }
+\item[{}]{swap}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__sortable_8h_aef9166740d3bad563e34c40ab29834c4}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                       \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) *\_vec = (vec);                                   \(\backslash\)
+    \_\_HAC\_VEC\_QSORT(base\_t, \_vec, 0, \_vec->n, comp, swap);             \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Sorts a vector. Uses quicksort, modified to fall back to selection sort if the size of the part being sorted is less than or equal to 7. Because it is written using only macros, there is obviously no recursion. Instead, the left half is iteratively quicksorted and the right half is popped onto a vector of start/end pairs to be processed when this iteration is finished. This is looped as long as the vector of pairs is not empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em vec} & a pointer to the vector to sort. \\
+\hline
+{\em comp} & an expression containing e1 and e2 (the elements to be compared). Should evaluate $<$ 0 if e1 $<$ e2, $>$ 0 if e1 $>$ e2, and == 0 if e1 == e2. Remember that just using -\/ will sometimes cause overflow. \\
+\hline
+{\em swap} & an expression containing v (a pointer to the vector), i, and j (the indicies to be swapped). \\
+\hline
+\end{DoxyParams}

@@ -1,4 +1,4 @@
-//_hac_vec_sortable.h
+/**@file _hac_vec_sortable.h*/
 #define /*size_t*/__HAC_VEC_AMAX(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ({\
 	size_t _amax = i1;                                                 \
 	base_t _max = vec->a[i1], e1, e2;                                  \
@@ -12,17 +12,20 @@
 	}                                                                  \
 	_amax;                                                             \
 })//END __HAC_VEC_AMAX
+
 #define /*void*/__HAC_VEC_SSTEP(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
 	HAC_VEC_T(base_t) *v = vec;                                        \
 	size_t j = __HAC_VEC_AMAX(base_t, vec, i1, i2, comp), i = i1;      \
 	({swap;});                                                         \
 	returnvoid;                                                        \
 })//END __HAC_VEC_SSTEP
+
 #define /*void*/__HAC_VEC_SSORT(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
 	for(size_t _i = i1; _i < i2; ++_i){                                \
 		__HAC_VEC_SSTEP(base_t, vec, _i, i2, comp, swap);              \
 	}                                                                  \
 })//END __HAC_VEC_SSORT
+
 #define /*base_t*/__HAC_VEC_PIVOT(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ({\
 	size_t _mi = (i1 + i2)/2;                                          \
 	base_t _a = vec->a[i1], _b = vec->a[i2 - 1], _m = vec->a[_mi], e1, e2;\
@@ -48,6 +51,7 @@
 		)                                                              \
 	);                                                                 \
 })//END __HAC_VEC_PIVOT
+
 #define /*size_t*/__HAC_VEC_PARTITION(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
 	size_t _a = i1, _b = i2 - 1, i, j;                                 \
 	base_t _p = __HAC_VEC_PIVOT(base_t, vec, i1, i2, comp), e1, e2;    \
@@ -64,6 +68,7 @@
 	}                                                                  \
 	_a;                                                                \
 })//END __HAC_VEC_PARTITION
+
 #define /*void*/__HAC_VEC_QSTEP(base_t, /*HAC_VEC_T**/vec, /*HAC_VEC_T**/tps, comp, swap) ({\
 	HAC_PAIR_T(size_t) _ab = HAC_VEC_POPR(HAC_PAIR_T(size_t), tps);    \
 	size_t _a = _ab.a, _b = _ab.b, _p;                                 \
@@ -74,6 +79,7 @@
 	}                                                                  \
 	__HAC_VEC_SSORT(base_t, vec, _a, _b, comp, swap);                  \
 })//END __HAC_VEC_QSTEP
+
 #define /*void*/__HAC_VEC_QSORT(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
 	HAC_PAIR_T_NEW(size_t);                                            \
 	HAC_VEC_T_NEW(HAC_PAIR_T(size_t));                                 \
@@ -84,9 +90,19 @@
 	}                                                                  \
 	HAC_VEC_DELETE(HAC_PAIR_T(size_t), &_tps);                         \
 })//END __HAC_VEC_QSORT
-//comp is an expression contatining e1 and e2 (the elements to be compared),
-//and swap is an expression contatining v (a pointer to the vector), and i and j (the indicies to be swapped)
-#define /*void*/HAC_VEC_SORT(base_t, /*HAC_VEC_T**/vec, comp, swap) ({ \
+
+/**
+ * @brief Sorts a vector.
+ * Uses quicksort, modified to fall back to selection sort if the size of the part being sorted is less than or equal to 7.
+ * Because it is written using only macros, there is obviously no recursion.  Instead, the left half is iteratively quicksorted
+ * and the right half is popped onto a vector of start/end pairs to be processed when this iteration is finished.  This is looped
+ * as long as the vector of pairs is not empty.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector to sort.
+ * @param comp an expression containing e1 and e2 (the elements to be compared).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
+ * @param swap an expression containing v (a pointer to the vector), i, and j (the indicies to be swapped).
+ */
+#define HAC_VEC_SORT(base_t, vec, comp, swap) ({                       \
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
 	__HAC_VEC_QSORT(base_t, _vec, 0, _vec->n, comp, swap);             \
 })//END HAC_VEC_SORT

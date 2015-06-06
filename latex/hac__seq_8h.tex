@@ -1,0 +1,231 @@
+\hypertarget{hac__seq_8h}{}\section{hac\+\_\+seq.\+h File Reference}
+\label{hac__seq_8h}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+
+
+Doubly linked list data type.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}hac\+\_\+util.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hac\+\_\+pair.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+base.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+functor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+monoid.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+collection.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+forward.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+reverse.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+access.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}\+\_\+hac\+\_\+seq\+\_\+sortable.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{hac__seq_8h_a570bd46c66b2f46ce687295b3a5371a6}{}\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}(base\+\_\+t)~\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\#\#base\+\_\+t\#\#\+\_\+\+T\label{hac__seq_8h_a570bd46c66b2f46ce687295b3a5371a6}
+
+\item 
+\#define \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}(base\+\_\+t)~\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)
+\begin{DoxyCompactList}\small\item\em A macro that represents the type of a sequence of types. Expands to an identifier of the form \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\#\#base\+\_\+t\#\#\+\_\+\+T, which has been typedefed by \hyperlink{hac__seq_8h_a471d4d0b1241679c4edb6a23ca511727}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W(base\+\_\+t)}. \end{DoxyCompactList}\item 
+\hypertarget{hac__seq_8h_ae61811d0bc2241e2059b7aa05b61a018}{}\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+O\+D\+E\+\_\+\+S}(base\+\_\+t)~\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+O\+D\+E\+\_\+\#\#base\+\_\+t\#\#\+\_\+\+S\label{hac__seq_8h_ae61811d0bc2241e2059b7aa05b61a018}
+
+\item 
+\hypertarget{hac__seq_8h_acbc5cf572b3d61d83badcb37efb95bd8}{}\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+O\+D\+E\+\_\+\+T}(base\+\_\+t)~struct \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+O\+D\+E\+\_\+\+S(base\+\_\+t)\label{hac__seq_8h_acbc5cf572b3d61d83badcb37efb95bd8}
+
+\item 
+\#define \hyperlink{hac__seq_8h_a471d4d0b1241679c4edb6a23ca511727}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W}(base\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets up the typedef for \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)}. \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)} is typedefed to be a struct with three members\+: n (the number of nodes), a, and b (pointers to the first and last node). Every node is in turn a struct with three members\+: v (the element\textquotesingle{}s value), a, and b (pointers to the previous and next nodes). \end{DoxyCompactList}\item 
+\#define \hyperlink{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y}(base\+\_\+t)~((\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}(base\+\_\+t))\{0\})
+\begin{DoxyCompactList}\small\item\em A macro that expands to an empty sequence of a type. n is 0 and a and b are N\+U\+L\+L. \end{DoxyCompactList}\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}(base\+\_\+t,  \+\_\+v)
+\item 
+\#define \hyperlink{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}(base\+\_\+t,  val)
+\begin{DoxyCompactList}\small\item\em Creates a sequence with one element. The only element will have a value of val. \end{DoxyCompactList}\item 
+\#define {\bfseries \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N}(base\+\_\+t,  seq,  val)
+\item 
+\#define \hyperlink{hac__seq_8h_af80912a7c7664712189fb012d9cf4762}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R}(base\+\_\+t,  seq,  val)
+\begin{DoxyCompactList}\small\item\em Adds a value onto the right end of a sequence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Doubly linked list data type. 
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{hac__seq_8h_ac4c807e1814b7c3aecad9c5e14edb7ed}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{\+\_\+v}
+\end{DoxyParamCaption}
+)}\label{hac__seq_8h_ac4c807e1814b7c3aecad9c5e14edb7ed}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{            \(\backslash\)
+    \_\_HAC\_SEQ\_NODE\_T(base\_t) *\_node = malloc(1*\textcolor{keyword}{sizeof}(\_\_HAC\_SEQ\_NODE\_T(base\_t)));\(\backslash\)
+    \_node ?                                                            \(\backslash\)
+        (\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{HAC\_SEQ\_T}(base\_t))\{.a = \_node, .b = \_node, .n = 1\}            \(\backslash\)
+    :                                                                  \(\backslash\)
+        (\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{HAC\_SEQ\_T}(base\_t))\{0\};                                        \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{hac__seq_8h_adc41ae1455ccfba6cd145b95dbe8242e}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N}}
+\index{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N@{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R\+\_\+\+N\+N(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{seq, }
+\item[{}]{val}
+\end{DoxyParamCaption}
+)}\label{hac__seq_8h_adc41ae1455ccfba6cd145b95dbe8242e}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{\(\backslash\)
+    int \_r = 0;                                                        \(\backslash\)
+    if((seq)->n)\{                                                      \(\backslash\)
+        (seq)->b->b = malloc(1*\textcolor{keyword}{sizeof}(\_\_HAC\_SEQ\_NODE\_T(base\_t)));      \(\backslash\)
+        if((seq)->b->b)\{                                               \(\backslash\)
+            *(seq)->b->b = (\_\_HAC\_SEQ\_NODE\_T(base\_t))\{.a = (seq)->b, .v = (val)\};\(\backslash\)
+            (seq)->b = (seq)->b->b;                                    \(\backslash\)
+            \_r = 1;                                                    \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}\textcolor{keywordflow}{else}\{                                                             \(\backslash\)
+        *(seq) = \hyperlink{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}{HAC\_SEQ\_NEW}(base\_t, (val));                           \(\backslash\)
+        \_r = !!(seq)->a;                                               \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_r;                                                                \(\backslash\)
+\})
+\end{DoxyCode}
+\hypertarget{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+E\+M\+P\+T\+Y(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t}
+\end{DoxyParamCaption}
+)~(({\bf H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}(base\+\_\+t))\{0\})}\label{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}
+
+
+A macro that expands to an empty sequence of a type. n is 0 and a and b are N\+U\+L\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an empty sequence for base\+\_\+t. 
+\end{DoxyReturn}
+\hypertarget{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+N\+E\+W(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{val}
+\end{DoxyParamCaption}
+)}\label{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                    \(\backslash\)
+    base\_t \_v = (val);                                                 \(\backslash\)
+    \_\_HAC\_SEQ\_NEW(base\_t, \_v);                                         \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Creates a sequence with one element. The only element will have a value of val. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em val} & the value for the element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a sequence with one element with the value val. 
+\end{DoxyReturn}
+\hypertarget{hac__seq_8h_af80912a7c7664712189fb012d9cf4762}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+P\+U\+S\+H\+R(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{seq, }
+\item[{}]{val}
+\end{DoxyParamCaption}
+)}\label{hac__seq_8h_af80912a7c7664712189fb012d9cf4762}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                             \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{\(\backslash\)}
+\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{    HAC\_SEQ\_T}(base\_t) *\_seq = (seq);                                   \(\backslash\)
+    int \_ret = 0;                                                      \(\backslash\)
+    if(\_seq->n)\{                                                       \(\backslash\)
+        \_seq->b->b = malloc(1*\textcolor{keyword}{sizeof}(\_\_HAC\_SEQ\_NODE\_T(base\_t)));       \(\backslash\)
+        if(\_seq->b->b)\{                                                \(\backslash\)
+            *\_seq->b->b = (\_\_HAC\_SEQ\_NODE\_T(base\_t))\{.a = \_seq->b, .v = (val)\};\(\backslash\)
+            \_seq->b = \_seq->b->b;                                      \(\backslash\)
+            ++\_seq->n;                                                 \(\backslash\)
+            \_ret = 1;                                                  \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}\textcolor{keywordflow}{else}\{                                                             \(\backslash\)
+        *\_seq = \hyperlink{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}{HAC\_SEQ\_NEW}(base\_t, (val));                            \(\backslash\)
+        \_ret = \_seq->n;                                                \(\backslash\)
+    \}                                                                  \(\backslash\)
+    !!\_ret;                                                            \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Adds a value onto the right end of a sequence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em seq} & a pointer to the sequence to append to. \\
+\hline
+{\em val} & the value to append to the sequence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on success, 0 on an allocation failure. 
+\end{DoxyReturn}
+\hypertarget{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t}
+\end{DoxyParamCaption}
+)~\+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)}\label{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}
+
+
+A macro that represents the type of a sequence of types. Expands to an identifier of the form \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\#\#base\+\_\+t\#\#\+\_\+\+T, which has been typedefed by \hyperlink{hac__seq_8h_a471d4d0b1241679c4edb6a23ca511727}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W(base\+\_\+t)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type of the sequence, eg double for a sequence of doubles. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an identifier of the form \+\_\+\+\_\+\+H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\#\#base\+\_\+t\#\#\+\_\+\+T. 
+\end{DoxyReturn}
+\hypertarget{hac__seq_8h_a471d4d0b1241679c4edb6a23ca511727}{}\index{hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W}!hac\+\_\+seq.\+h@{hac\+\_\+seq.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T\+\_\+\+N\+E\+W(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t}
+\end{DoxyParamCaption}
+)}\label{hac__seq_8h_a471d4d0b1241679c4edb6a23ca511727}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\_\_HAC\_SEQ\_NODE\_T(base\_t)\{base\_t v; \_\_HAC\_SEQ\_NODE\_T(base\_t) *a, *b;\};\(\backslash\)
+    typedef \textcolor{keyword}{struct}\{HAC\_SEQ\_NODE\_T(base\_t) *a, *b; \textcolor{keywordtype}{size\_t} n;\} \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{HAC\_SEQ\_T}(base\_t)
+\end{DoxyCode}
+
+
+Sets up the typedef for \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)}. \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+T(base\+\_\+t)} is typedefed to be a struct with three members\+: n (the number of nodes), a, and b (pointers to the first and last node). Every node is in turn a struct with three members\+: v (the element\textquotesingle{}s value), a, and b (pointers to the previous and next nodes). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+\end{DoxyParams}

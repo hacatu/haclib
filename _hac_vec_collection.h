@@ -1,6 +1,12 @@
-//_hac_vec_collection.h
-//expr is an expression contatining e (the current element)
-#define /*HAC_VEC_T*/HAC_VEC_FILTER(base_t, /*HAC_VEC_T**/vec, expr) ({\
+/**@file _hac_vec_collection.h*/
+/**
+ * @brief Creates a vector with only the elements of a vector meeting a condition.
+ * @param base_t the base type.
+ * @param vec a pointer the vector to copy.
+ * @param expr an expression containing e (the current element).  If true, e will be in the output vector.
+ * @return a vector with only the elements of seq meeting expr.
+ */
+#define HAC_VEC_FILTER(base_t, vec, expr) ({                           \
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
 	HAC_VEC_T(base_t) _ret = HAC_VEC_NEW(base_t, _vec->n);             \
 	if(_ret.a){                                                        \
@@ -11,6 +17,6 @@
 			returnvoid;                                                \
 		}));                                                           \
 	}                                                                  \
-	_ret;                                                              \
+	_ret;/*TODO: add HAC_VEC_TRIM(base_t, vec, size) and use it here.*/\
 })//END HAC_VEC_FILTER
 

@@ -1,0 +1,125 @@
+\hypertarget{__hac__vec__forward_8h}{}\section{\+\_\+hac\+\_\+vec\+\_\+forward.\+h File Reference}
+\label{__hac__vec__forward_8h}\index{\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{__hac__vec__forward_8h_acf46eb4d2a13bc237b9e79272d8af252}{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R}(base\+\_\+t,  vec,  init,  expr)
+\begin{DoxyCompactList}\small\item\em Applies expr to a value and every element of a vector in order, updating the value and then returning it. Note\+: uses \+\_\+\+\_\+auto\+\_\+type, a nonstandard C extension, to determine the type of the accumulator/return value. \end{DoxyCompactList}\item 
+\#define \hyperlink{__hac__vec__forward_8h_ace6c51e587f433cf68fb17ce56853f53}{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R}(base\+\_\+t,  vec)
+\begin{DoxyCompactList}\small\item\em Removes and returns the rightmost value in a vector. If the vector is empty, you will have a bad time (this macro will set a base\+\_\+t variable to a void value, and that won\textquotesingle{}t work). \end{DoxyCompactList}\item 
+\#define \hyperlink{__hac__vec__forward_8h_a1a1f01cf68b7841e2ad7b2910867f47f}{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E}(base\+\_\+t,  i1,  i2,  step)
+\begin{DoxyCompactList}\small\item\em Create a vector that is an arithmetic sequence of additive values (ie numeric type values). Starts at i1, adds step until i2 is reached, and pushes each value to the end of the vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{__hac__vec__forward_8h_acf46eb4d2a13bc237b9e79272d8af252}{}\index{\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}!H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R}}
+\index{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R}!\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+F\+O\+L\+D\+R(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec, }
+\item[{}]{init, }
+\item[{}]{expr}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__forward_8h_acf46eb4d2a13bc237b9e79272d8af252}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                      \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) *\_vec = (vec);                                   \(\backslash\)
+    \_\_auto\_type l = (init);                                            \(\backslash\)
+    \_\_HAC\_VEC\_FOREACH(base\_t, \_vec, (\{                                 \(\backslash\)
+        l = (\{expr;\});                                                 \(\backslash\)
+    \}));                                                               \(\backslash\)
+    l;                                                                 \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Applies expr to a value and every element of a vector in order, updating the value and then returning it. Note\+: uses \+\_\+\+\_\+auto\+\_\+type, a nonstandard C extension, to determine the type of the accumulator/return value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em vec} & a pointer to the vector to fold. \\
+\hline
+{\em init} & the initial value of the accumulator. The type of this parameter will be the return type, and expr must process a value of this type and base\+\_\+t. \\
+\hline
+{\em expr} & an expression containing e (the current element) and l (the last accumulator value, starts as init). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the final accumulator value. 
+\end{DoxyReturn}
+\hypertarget{__hac__vec__forward_8h_ace6c51e587f433cf68fb17ce56853f53}{}\index{\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}!H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R}}
+\index{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R}!\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+P\+O\+P\+R(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{vec}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__forward_8h_ace6c51e587f433cf68fb17ce56853f53}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                   \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) *\_vec = (vec);                                   \(\backslash\)
+    \_vec->a[--\_vec->n];                                                \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Removes and returns the rightmost value in a vector. If the vector is empty, you will have a bad time (this macro will set a base\+\_\+t variable to a void value, and that won\textquotesingle{}t work). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em vec} & a pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the rightmost value, now removed. 
+\end{DoxyReturn}
+\hypertarget{__hac__vec__forward_8h_a1a1f01cf68b7841e2ad7b2910867f47f}{}\index{\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}!H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E}}
+\index{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E@{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E}!\+\_\+hac\+\_\+vec\+\_\+forward.\+h@{\+\_\+hac\+\_\+vec\+\_\+forward.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+V\+E\+C\+\_\+\+R\+A\+N\+G\+E(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{i1, }
+\item[{}]{i2, }
+\item[{}]{step}
+\end{DoxyParamCaption}
+)}\label{__hac__vec__forward_8h_a1a1f01cf68b7841e2ad7b2910867f47f}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                         \(\backslash\)
+    base\_t \_v = (i1), \_s = (step);                                     \(\backslash\)
+    size\_t \_n = ((i2) - \_v + \_s)/\_s;                                   \hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{\(\backslash\)}
+\hyperlink{hac__vec_8h_a476a2bba23a3cb1050514473aa3551cc}{    HAC\_VEC\_T}(base\_t) \_ret = \_\_HAC\_VEC\_NEW(base\_t, \_n);                \(\backslash\)
+    if(\_ret.a)\{                                                        \(\backslash\)
+        for(\textcolor{keywordtype}{size\_t} \_i = 0; \_i < \_n; \_v += \_s, ++\_i)\{                   \(\backslash\)
+            \_ret.a[\_i] = \_v;                                           \(\backslash\)
+        \}                                                              \(\backslash\)
+        \_ret.n = \_n;                                                   \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_ret;                                                              \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Create a vector that is an arithmetic sequence of additive values (ie numeric type values). Starts at i1, adds step until i2 is reached, and pushes each value to the end of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. Must be valid to use with +. \\
+\hline
+{\em i1} & the starting value (inclusive). \\
+\hline
+{\em i2} & the ending value (exclusive). \\
+\hline
+{\em step} & the step size. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector that is an arithmetic sequence with a0 = i1, d = step, and stopping just before i2. 
+\end{DoxyReturn}

@@ -1,0 +1,130 @@
+\hypertarget{__hac__seq__base_8h}{}\section{\+\_\+hac\+\_\+seq\+\_\+base.\+h File Reference}
+\label{__hac__seq__base_8h}\index{\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E}(base\+\_\+t,  seq)
+\begin{DoxyCompactList}\small\item\em Deletes a sequence. Frees all nodes and sets the header to empty, but does not delete the values in any way, so \hyperlink{__hac__seq__functor_8h_ac6ca0b9c14f9673e3c3360cb8ee069b6}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+O\+R\+E\+A\+C\+H(base\+\_\+t, seq, expr)} may be needed. \end{DoxyCompactList}\item 
+\#define \hyperlink{__hac__seq__base_8h_aa0efa0d15c2e20ee22b700e47c4bbd38}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y}(base\+\_\+t,  seq)
+\begin{DoxyCompactList}\small\item\em Copies a sequence. Does not deep copy the values in any way. \end{DoxyCompactList}\item 
+\#define \hyperlink{__hac__seq__base_8h_a7bd758ec3f69d679f43079b542e43217}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M}(base\+\_\+t,  size,  array)
+\begin{DoxyCompactList}\small\item\em Creates a sequence from a plain old array. Does not deep copy the values in any way. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{__hac__seq__base_8h_aa0efa0d15c2e20ee22b700e47c4bbd38}{}\index{\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y}!\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+C\+O\+P\+Y(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{seq}
+\end{DoxyParamCaption}
+)}\label{__hac__seq__base_8h_aa0efa0d15c2e20ee22b700e47c4bbd38}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                   \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{\(\backslash\)}
+\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{    HAC\_SEQ\_T}(base\_t) *\_seq = (seq), \_ret;                             \(\backslash\)
+    if(\_seq->n)\{                                                       \(\backslash\)
+        \_ret = \hyperlink{hac__seq_8h_a2b6f01cc5f9708e71c78bbb03ee3ac50}{HAC\_SEQ\_NEW}(base\_t, \_seq->a->v);                        \(\backslash\)
+        for(\_\_HAC\_SEQ\_NODE\_T(base\_t) *\_node = \_seq->a->b; \_node; \_node = \_node->b)\{\(\backslash\)
+            if(!\_\_HAC\_SEQ\_PUSHR\_NN(base\_t, &\_ret, \_node->v))\{          \hyperlink{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{\(\backslash\)}
+\hyperlink{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{                HAC\_SEQ\_DELETE}(base\_t, &\_ret);                         \(\backslash\)
+                break;                                                 \(\backslash\)
+            \}                                                          \(\backslash\)
+        \}                                                              \(\backslash\)
+        if(\_ret.a)\{                                                    \(\backslash\)
+            \_ret.n = \_seq->n;                                          \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}\textcolor{keywordflow}{else}\{                                                             \(\backslash\)
+        \_ret = \hyperlink{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}{HAC\_SEQ\_EMPTY}(base\_t);                                  \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_ret;                                                              \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Copies a sequence. Does not deep copy the values in any way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em seq} & a pointer to the sequence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new sequence that is a copy of seq. 
+\end{DoxyReturn}
+\hypertarget{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{}\index{\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E}!\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+D\+E\+L\+E\+T\+E(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{seq}
+\end{DoxyParamCaption}
+)}\label{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                 \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{\(\backslash\)}
+\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{    HAC\_SEQ\_T}(base\_t) *\_seq = (seq);                                   \(\backslash\)
+    for(\_\_HAC\_SEQ\_NODE\_T(base\_t) *\_cur = \_seq->a, *\_next; \_cur;)\{      \(\backslash\)
+        \_next = \_cur->b;                                               \(\backslash\)
+        free(\_cur);                                                    \(\backslash\)
+        \_cur = \_next;                                                  \(\backslash\)
+    \}                                                                  \(\backslash\)
+    *\_seq = \hyperlink{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}{HAC\_SEQ\_EMPTY}(base\_t);                                     
+      \hyperlink{hac__util_8h_a967927e80dbd5c8582df04345c4c181c}{\(\backslash\)}
+\hyperlink{hac__util_8h_a967927e80dbd5c8582df04345c4c181c}{    returnvoid};                                                        \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Deletes a sequence. Frees all nodes and sets the header to empty, but does not delete the values in any way, so \hyperlink{__hac__seq__functor_8h_ac6ca0b9c14f9673e3c3360cb8ee069b6}{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+O\+R\+E\+A\+C\+H(base\+\_\+t, seq, expr)} may be needed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em seq} & a pointer to the sequence to delete. \\
+\hline
+\end{DoxyParams}
+\hypertarget{__hac__seq__base_8h_a7bd758ec3f69d679f43079b542e43217}{}\index{\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}!H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M}}
+\index{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M@{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M}!\+\_\+hac\+\_\+seq\+\_\+base.\+h@{\+\_\+hac\+\_\+seq\+\_\+base.\+h}}
+\subsubsection[{H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+C\+\_\+\+S\+E\+Q\+\_\+\+F\+R\+O\+M(
+\begin{DoxyParamCaption}
+\item[{}]{base\+\_\+t, }
+\item[{}]{size, }
+\item[{}]{array}
+\end{DoxyParamCaption}
+)}\label{__hac__seq__base_8h_a7bd758ec3f69d679f43079b542e43217}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                           \(\backslash\)
+    size\_t \_m = (size);                                                \(\backslash\)
+    base\_t *\_a;                                                        \hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{\(\backslash\)}
+\hyperlink{hac__seq_8h_a1ca87efbdde31092ca9dd6768fbac1dc}{    HAC\_SEQ\_T}(base\_t) \_ret = \hyperlink{hac__seq_8h_a3de31ebc4680b62a6ea41dc60908cb36}{HAC\_SEQ\_EMPTY}(base\_t);                    \(\backslash\)
+    for(\textcolor{keywordtype}{size\_t} \_i = 0; \_i < \_m; ++i)\{                                  \(\backslash\)
+        if(!\_\_HAC\_SEQ\_PUSHR\_NN(base\_t, &\_ret, \_a[\_i]))\{                \hyperlink{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{\(\backslash\)}
+\hyperlink{__hac__seq__base_8h_a7790f0c813cf6b000c90b54885c04840}{            HAC\_SEQ\_DELETE}(base\_t, &\_ret);                             \(\backslash\)
+            break;                                                     \(\backslash\)
+        \}                                                              \(\backslash\)
+    \}                                                                  \(\backslash\)
+    if(\_ret.a)\{                                                        \(\backslash\)
+        \_ret.n = \_m;                                                   \(\backslash\)
+    \}                                                                  \(\backslash\)
+    \_ret;                                                              \(\backslash\)
+\})
+\end{DoxyCode}
+
+
+Creates a sequence from a plain old array. Does not deep copy the values in any way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+\_\+t} & the base type. \\
+\hline
+{\em size} & the number of elements to copy from array. \\
+\hline
+{\em array} & the array to copy from (eg an array, a pointer, or the a member of a vector). \\
+\hline
+\end{DoxyParams}
