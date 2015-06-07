@@ -2,4 +2,6 @@ html
 html/*
 latex
 latex/*
+*.o
+*.test
 
