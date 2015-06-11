@@ -1,13 +1,13 @@
 /**@file _hac_vec_sortable.h*/
 #define /*size_t*/__HAC_VEC_AMAX(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ({\
 	size_t _amax = i1;                                                 \
-	base_t _max = vec->a[i1], e1, e2;                                  \
-	for(size_t _i = i1 + 1; _i < i2; ++_i){                            \
+	base_t _max = (vec)->a[i1], e1, e2;                                \
+	for(size_t _i_ = i1 + 1; _i_ < i2; ++_i_){                         \
 		e1 = _max;                                                     \
-		e2 = vec->a[_i];                                               \
+		e2 = (vec)->a[_i_];                                            \
 		if(({comp;}) > 0){                                             \
-			_max = vec->a[_i];                                         \
-			_amax = _i;                                                \
+			_max = (vec)->a[_i_];                                      \
+			_amax = _i_;                                               \
 		}                                                              \
 	}                                                                  \
 	_amax;                                                             \
@@ -26,9 +26,11 @@
 	}                                                                  \
 })//END __HAC_VEC_SSORT
 
-#define /*base_t*/__HAC_VEC_PIVOT(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ({\
+#define /*base_t*/__HAC_VEC_PIVOT_FIRST(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ((vec)->a[i1])
+
+#define /*base_t*/__HAC_VEC_PIVOT_MEDIAN3(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp) ({\
 	size_t _mi = (i1 + i2)/2;                                          \
-	base_t _a = vec->a[i1], _b = vec->a[i2 - 1], _m = vec->a[_mi], e1, e2;\
+	base_t _a = (vec)->a[i1], _b = (vec)->a[i2 - 1], _m = (vec)->a[_mi], e1, e2;\
 	(({e1 = _m; e2 = _b; comp;}) >= 0) ? (                             \
 		(({e1 = _m; e2 = _a; comp;}) >= 0) ? (                         \
 			(({e1 = _b; e2 = _a; comp;}) >= 0) ? (                     \
@@ -50,31 +52,33 @@
 			)                                                          \
 		)                                                              \
 	);                                                                 \
-})//END __HAC_VEC_PIVOT
+})//END __HAC_VEC_PIVOT_MEDIAN3
 
 #define /*size_t*/__HAC_VEC_PARTITION(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
-	size_t _a = i1, _b = i2 - 1, i, j;                                 \
-	base_t _p = __HAC_VEC_PIVOT(base_t, vec, i1, i2, comp), e1, e2;    \
+	size_t _a_ = i1, _b_ = i2 - 1, i, j;                               \
+	base_t _p_ = __HAC_VEC_PIVOT_FIRST(base_t, vec, i1, i2, comp), e1, e2;\
 	HAC_VEC_T(base_t) *v = vec;                                        \
-	while(_b > _a){                                                    \
-		e1 = _p;                                                       \
-		e2 = vec->a[_a];                                               \
-		if(({comp;}) >= 0){                                            \
-			({i = _a; j = _b; swap;});                                 \
-			--_b;                                                      \
+	while(_b_ > _a_){                                                  \
+		e1 = _p_;                                                      \
+		e2 = (vec)->a[_a_];                                            \
+		if(({comp;}) <= 0){                                            \
+			({i = _a_; j = _b_; swap;});                               \
+			if(({comp;}) < 0){                                         \
+				--_b_;                                                 \
+			}                                                          \
 		}else{                                                         \
-			++_a;                                                      \
+			++_a_;                                                     \
 		}                                                              \
 	}                                                                  \
-	_a;                                                                \
+	_a_;                                                               \
 })//END __HAC_VEC_PARTITION
 
 #define /*void*/__HAC_VEC_QSTEP(base_t, /*HAC_VEC_T**/vec, /*HAC_VEC_T**/tps, comp, swap) ({\
 	HAC_PAIR_T(size_t) _ab = HAC_VEC_POPR(HAC_PAIR_T(size_t), tps);    \
 	size_t _a = _ab.a, _b = _ab.b, _p;                                 \
 	while(_b - _a > 7){                                                \
-		_p = __HAC_VEC_PARTITION(base_t, vec, _ab.a, _ab.b, comp, swap);\
-		HAC_VEC_PUSHR(HAC_PAIR_T(size_t), tps, HAC_PAIR_MAKE(size_t, _p, _b));\
+		_p = __HAC_VEC_PARTITION(base_t, vec, _a, _b, comp, swap);     \
+		HAC_VEC_PUSHR(HAC_PAIR_T(size_t), tps, HAC_PAIR_MAKE(size_t, _p + 1, _b));\
 		_b = _p;                                                       \
 	}                                                                  \
 	__HAC_VEC_SSORT(base_t, vec, _a, _b, comp, swap);                  \
@@ -85,7 +89,7 @@
 	HAC_VEC_T_NEW(HAC_PAIR_T(size_t));                                 \
 	HAC_PAIR_T(size_t) _tpa[1] = {HAC_PAIR_MAKE(size_t, i1, i2)};      \
 	HAC_VEC_T(HAC_PAIR_T(size_t)) _tps = HAC_VEC_FROM(HAC_PAIR_T(size_t), 1, _tpa);\
-	while(HAC_VEC_LEN(HAC_PAIR_T(size_t), &_tps)){                     \
+	while(_tps.n){                                                     \
 		__HAC_VEC_QSTEP(base_t, vec, &_tps, comp, swap);               \
 	}                                                                  \
 	HAC_VEC_DELETE(HAC_PAIR_T(size_t), &_tps);                         \

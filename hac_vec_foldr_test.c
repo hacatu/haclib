@@ -1,14 +1,12 @@
-//hac_vec_foldr_test.c
+/**
+ * @file hac_vec_foldr_test.c
+ * Tests:
+ * 	_hac_vec_forward.h:
+ *   HAC_VEC_RANGE(), HAC_VEC_FOLDR()
+ * Finds the gcd of all numbers from 1 to 10 using HAC_VEC_FOLDR()
+ */
 #include <stdio.h>
 #include "hac_vec.h"
-
-/* Tests:
- * Forward:
- *  Range, Foldr
- */
-
-/* Finds the gcd of all numbers from 1 to 10 using foldr
- */
 
 int gcd(int a, int b){
 	if(a > b){

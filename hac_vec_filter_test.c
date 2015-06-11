@@ -1,14 +1,12 @@
-//hac_vec_filter_test.v
+/**
+ * @file hac_vec_filter_test.c
+ * Tests:
+ *  _hac_vec_collection.h:
+ *   HAC_VEC_FILTER()
+ * Finds all pythagorean triples with a perimeter of 1000 using HAC_VEC_FILTER() and prints the first one.
+ */
 #include <stdio.h>
 #include "hac_vec.h"
-
-/* Tests:
- * Collection:
- *  Filter
- */
-
-/* Finds all pythagorean triples with a perimeter of 1000 using filter and prints the first one
- */
 
 typedef struct{int a, b, c;} Triangle;
 

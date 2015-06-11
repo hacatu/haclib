@@ -4,4 +4,8 @@ latex
 latex/*
 *.o
 *.test
+expanded.c
+*.out
+*.prof
+*.out.*
 

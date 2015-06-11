@@ -1,18 +1,16 @@
-//hac_vec_foreach_test.c
+/**
+ * @file hac_vec_foreach_test.c
+ * Tests:
+ * 	hac_vec.h:
+ *   HAC_VEC_T_NEW(), HAC_VEC_T(), HAC_VEC_LEN(), HAC_VEC_FOREACH(), HAC_VEC_PUSHR()
+ *  _hac_vec_base.h:
+ *   HAC_VEC_DELETE(), HAC_VEC_FROM()
+ *  _hac_vec_monoid.h:
+ *   HAC_VEC_ALL()
+ * Finds all prime numbers under 100 using a vector.
+ */
 #include <stdio.h>
 #include "hac_vec.h"
-
-/* Tests:
- * Pre:
- *  T_NEW, T, LEN, FOREACH, PUSHR
- * Base:
- *  DELETE, FROM
- * Monoid:
- *  ALL
- */
-
-/* Finds all prime numbers under 100 using a vector
- */
 
 int main(void){
 	HAC_VEC_T_NEW(int);

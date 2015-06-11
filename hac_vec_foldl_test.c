@@ -1,14 +1,12 @@
-//hac_vec_foldl_test.v
+/**
+ * @file hac_vec_foldl_test.c
+ * Tests:
+ * 	_hac_vec_reverse.h:
+ *   HAC_VEC_FOLDL()
+ * Reverses a vector using HAC_VEC_FOLDL()
+ */
 #include <stdio.h>
 #include "hac_vec.h"
-
-/* Tests:
- * Reverse:
- *  Foldl
- */
-
-/* Reverses a vector using foldl
- */
 
 int main(void){
 	HAC_VEC_T_NEW(int);

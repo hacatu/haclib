@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -c -std=c11
 LDFLAGS = -lm
-TESTS = hac_vec_foreach.test hac_vec_foldr.test hac_vec_foldl.test hac_vec_filter.test
+TESTS = hac_vec_foreach.test hac_vec_foldr.test hac_vec_foldl.test hac_vec_filter.test hac_vec_sort.test
 
 release: CFLAGS += -O2
 release: LDFLAGS += -O2
