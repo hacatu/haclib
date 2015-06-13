@@ -32,7 +32,7 @@
  */
 #define HAC_SEQ_T_NEW(base_t)                                          \
 	__HAC_SEQ_NODE_T(base_t){base_t v; __HAC_SEQ_NODE_T(base_t) *a, *b;};\
-	typedef struct{HAC_SEQ_NODE_T(base_t) *a, *b; size_t n;} HAC_SEQ_T(base_t)
+	typedef struct{__HAC_SEQ_NODE_T(base_t) *a, *b; size_t n;} HAC_SEQ_T(base_t)
 
 /**
  * @brief A macro that expands to an empty sequence of a type.
@@ -45,7 +45,8 @@
 #define /*HAC_SEQ_T*/__HAC_SEQ_NEW(base_t, /*base_t*/_v) ({            \
 	__HAC_SEQ_NODE_T(base_t) *_node = malloc(1*sizeof(__HAC_SEQ_NODE_T(base_t)));\
 	_node ?                                                            \
-		(HAC_SEQ_T(base_t)){.a = _node, .b = _node, .n = 1}            \
+		(*_node = (__HAC_SEQ_NODE_T(base_t)){.v = _v},                 \
+		(HAC_SEQ_T(base_t)){.a = _node, .b = _node, .n = 1})           \
 	:                                                                  \
 		(HAC_SEQ_T(base_t)){0};                                        \
 })//END __HAC_SEQ_NEW
@@ -109,8 +110,7 @@
 #include "_hac_seq_collection.h"
 #include "_hac_seq_forward.h"
 #include "_hac_seq_reverse.h"
-#include "_hac_seq_access.h"
-#include "_hac_seq_sortable.h"
+//#include "_hac_seq_sortable.h"
 
 #endif
 

@@ -57,18 +57,18 @@
  * @param val the value to prepend to the sequence.
  * @return 1 on success, 0 on an allocation failure.
  */
-#define /*int*/HAC_SEQ_PUSHR(base_t, /*HAC_SEQ_T**/seq, /*base_t*/val) ({
-	HAC_SEQ_T(base_t) *_seq = (seq);
-	if(_seq->n){
-		_seq->a->a = malloc(1*sizeof(__HAC_SEQ_NODE_T(base_t)));
-		if(_seq->a->a){
-			*_seq->a->a = (__HAC_SEQ_NODE_T(base_t)){.b = _seq->a, .v = (val)};
-			_seq->a = _seq->a->a;
-			++_seq->n;
-		}
-	}else{
-		*_seq = HAC_SEQ_NEW(base_t, (val));
-	}
-	!!_seq->n;
-})
+#define /*int*/HAC_SEQ_PUSHL(base_t, /*HAC_SEQ_T**/seq, /*base_t*/val) ({\
+	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
+	if(_seq->n){                                                       \
+		_seq->a->a = malloc(1*sizeof(__HAC_SEQ_NODE_T(base_t)));       \
+		if(_seq->a->a){                                                \
+			*_seq->a->a = (__HAC_SEQ_NODE_T(base_t)){.b = _seq->a, .v = (val)};\
+			_seq->a = _seq->a->a;                                      \
+			++_seq->n;                                                 \
+		}                                                              \
+	}else{                                                             \
+		*_seq = HAC_SEQ_NEW(base_t, (val));                            \
+	}                                                                  \
+	!!_seq->n;                                                         \
+})//END HAC_SEQ_PUSHL
 

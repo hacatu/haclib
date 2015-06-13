@@ -11,7 +11,7 @@
 #define HAC_SEQ_FOLDR(base_t, seq, init, expr) ({                      \
 	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
 	__auto_type l = (init);                                            \
-	__HAC_SEQ_FOREACH(base_t, _seq, ({                                 \
+	HAC_SEQ_FOREACH(base_t, _seq, ({                                   \
 		l = ({expr;});                                                 \
 	}));                                                               \
 	l;                                                                 \
@@ -58,11 +58,11 @@
  * @return an arithmetic sequence with a0 = i1, d = step, and stopping just before i2.
  */
 #define HAC_SEQ_RANGE(base_t, i1, i2, step) ({                         \
-	base_t _v = (i1), _e = (i2), _s = (step);                          \
+	base_t _v_ = (i1), _e = (i2), _s = (step);                         \
 	HAC_SEQ_T(base_t) _ret = HAC_SEQ_EMPTY(base_t);                    \
-	for(; _v < _e; _v += _s){/*TODO: support negative steps*/          \
-		if(!HAC_SEQ_PUSHR(base_t, &_ret, _v)){                         \
-			HAC_VEC_DELETE(base_t, &_ret);                             \
+	for(; _v_ < _e; _v_ += _s){/*TODO: support negative steps*/        \
+		if(!HAC_SEQ_PUSHR(base_t, &_ret, _v_)){                        \
+			HAC_SEQ_DELETE(base_t, &_ret);                             \
 			break;                                                     \
 		}                                                              \
 	}                                                                  \

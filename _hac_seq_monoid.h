@@ -100,3 +100,12 @@
  */
 #define HAC_SEQ_CONTAINS(base_t, seq, elem, comp) HAC_VEC_ANY(base_t, vec, ({base_t e1 = elem; base_t e2 = e; !({comp});}))
 
+/**
+ * @brief Gets the length of a sequence.
+ * Equivalent to doing (seq)->n
+ * @param base_t the base type.
+ * @param seq a pointer to the sequence.
+ * @return the length of seq.
+ */
+ #define HAC_SEQ_LEN(base_t, seq) ((seq)->n)
+
