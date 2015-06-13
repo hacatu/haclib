@@ -36,11 +36,6 @@ int main(void){
 	srand(time(NULL));
 	HAC_VEC_T(int) vec = HAC_VEC_RANGE(int, 1, 100, 1);
 	HAC_VEC_SHUFFLE(int, &vec, HAC_VEC_SWAP(int, v, i, j), rand_interval(m, n));
-	/*
-	puts("Shuffled:");
-	HAC_VEC_FOREACH(int, &vec, printf("%i,", e));
-	puts("");
-	*/
 	HAC_VEC_SORT(int, &vec, comp(e1, e2), HAC_VEC_SWAP(int, v, i, j));
 	puts("Sorted:");
 	HAC_VEC_FOREACH(int, &vec, printf("%i,", e));

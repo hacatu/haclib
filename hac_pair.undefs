@@ -1,0 +1,7 @@
+#undef __HAC_PAIR_T
+#undef HAC_PAIR_T
+#undef HAC_PAIR_T_NEW
+#undef HAC_PAIR_MAKE
+#undef HAC_PAIR_SWAP
+#undef HAC_PAIR_COPY
+

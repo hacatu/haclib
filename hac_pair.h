@@ -31,7 +31,7 @@
  * @param _b a base_t value for the second element of the pair.
  * @return a pair of _a and _b.
  */
-#define HAC_PAIR_MAKE(base_t, _a, _b) (HAC_PAIR_T(base_t)){.a = _a, .b = _b}
+#define HAC_PAIR_MAKE(base_t, _a, _b) ((HAC_PAIR_T(base_t)){.a = _a, .b = _b})
 
 /**
  * @brief Swaps the two elements of a pair.

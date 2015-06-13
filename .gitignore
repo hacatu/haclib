@@ -8,4 +8,5 @@ expanded.c
 *.out
 *.prof
 *.out.*
+*.log
 

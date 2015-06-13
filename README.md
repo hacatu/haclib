@@ -34,3 +34,11 @@ length of a vector, `vec.a[i]` or `HAC_VEC_GET(base_t, &vec, i)` to get the ith 
 
 Take a look at the test files to see some actual examples.
 
+A note on debugging with macros:  It is impossible to debug macros, so you will have to expand them if something goes wrong.
+To do this, run GCC/Clang with `-E` to only do preprocessing.  Before doing this, I would suggest commenting out the includes in
+the haclib headers (eg stdlib.h) because they will add thousands of lines of definitions.  Take them out of comments right after.
+Also, you will probably only want to expand one macro, like `HAC_VEC_FOREACH` for instance.  After your include of haclib, add
+ `#undef` s for every other macro you include.  A file with all of these undefs can be found in hac_<part>.undefs, so copy and paste
+it and remove the ones you want to expand in your source.  Then format the generated code so it looks pretty and compile with
+debugging support ( `-g` ).
+
