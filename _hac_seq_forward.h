@@ -19,7 +19,7 @@
 
 /**
  * @brief Removes and returns the rightmost value in a sequence.
- * If the sequence is empty, you will have a bad time (this macro will set a base_t variable to a void value, and that won't work).
+ * If the sequence is empty, you will have a bad time (this macro will dereference a null pointer, and that won't work).
  * @param base_t the base type.
  * @param seq a pointer to the sequence.
  * @return the rightmost value, now removed.
@@ -29,7 +29,7 @@
 	base_t _r;                                                         \
 	switch(_seq->n){                                                   \
 		case 0:                                                        \
-		_r = returnvoid;/*NOTE: fix returnvoid*/                       \
+		_r = *(base_t*)0;/*intentional*/                               \
 		break;                                                         \
 		case 1:                                                        \
 		_r = _seq->b->v;                                               \

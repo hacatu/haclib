@@ -102,7 +102,19 @@
 		_ret = _seq->n;                                                \
 	}                                                                  \
 	!!_ret;                                                            \
-})//END __HAC_SEQ_PUSHR
+})//END HAC_SEQ_PUSHR
+
+#define /*void*/__HAC_SEQ_FIXP(base_t, /*HAC_SEQ_T**/seq) ({           \
+	size_t _i = (seq)->n;                                              \
+	__HAC_SEQ_NODE_T(base_t) *_node = (seq)->a;                        \
+	while(_i > 0){                                                     \
+		_node->b->a = _node;                                           \
+		_node = _node->b;                                              \
+		--_i;                                                          \
+	}                                                                  \
+	(seq)->b = _node;                                                  \
+	(seq)->a = (seq)->b = NULL;                                        \
+})//END __HAC_SEQ_FIXP
 
 #include "_hac_seq_base.h"
 #include "_hac_seq_functor.h"
@@ -110,7 +122,8 @@
 #include "_hac_seq_collection.h"
 #include "_hac_seq_forward.h"
 #include "_hac_seq_reverse.h"
-//#include "_hac_seq_sortable.h"
+#include "_hac_seq_shuffle.h"
+#include "_hac_seq_sortable.h"
 
 #endif
 
