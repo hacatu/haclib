@@ -1,5 +1,10 @@
 language: c
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.9
 compiler:
-  - gcc
-  - clang
+  - gcc-4.9
 script: make && make test
