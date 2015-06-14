@@ -8,7 +8,6 @@
  */
 #define HAC_SEQ_FILTER(base_t, seq, expr) ({                           \
 	HAC_SEQ_T(base_t) _ret = HAC_SEQ_EMPTY(base_t);                    \
-	base_t e;                                                          \
 	HAC_SEQ_FOREACH(base_t, seq, ({                                    \
 		if(({expr;})){                                                 \
 			HAC_SEQ_PUSHR(base_t, &_ret, e);                           \
