@@ -1,4 +1,4 @@
-CC = gcc
+CC ?= gcc
 CFLAGS = -Wall -c -std=c11
 LDFLAGS = -lm
 TESTS =\

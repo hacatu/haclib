@@ -1,5 +1,7 @@
 # HACLIB
 
+[https://travis-ci.org/hacatu/haclib.svg?branch=master]
+
 Haclib adds higher-order, generic types to C.  These include vectors (self-resizing arrays), sequences (linked lists),
 and trees.  These data structures are implemented as macros in headers with the base type being the first parameter,
 so specific code is generated for each type and there is no overhead from tags or void pointers.  Note that because of a
