@@ -23,7 +23,10 @@ work), the macros `*_T_NEW(base_t)` must be used once before the macros `*_T(bas
 	}
 
 The code makes heavy use of statement expressions (the `({})` things), which are not standard C but supported by at least GCC and
-Clang.
+Clang.  The code also uses `__auto_type` if `__GNUC__` is defined and `__typeof__()` if it is not.  Clang defines `__GNUC__` because
+it supports GNU C extensions, but it shouldn't because it doesn't support `__auto_type`, so if `__clang__` is defined `__typeof__()`
+will again be used.  `__typeof__()` could theoretically cause a problem if used on an expression with side effects, so if you do
+that and get problems, try caching it to a variable first.  TCC, MSVC, Intel, and DMC are untested.
 
 The code for the data types is divided into separate files for different "typeclasses", which are only nominal but denote certain
 behaviors.  For example, the `functor` interface requires `map` and `foreach`, so these macros are placed in _hac_vec_functor.h.

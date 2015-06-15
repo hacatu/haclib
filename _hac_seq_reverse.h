@@ -10,7 +10,7 @@
  */
 #define HAC_SEQ_FOLDL(base_t, seq, init, expr) ({                      \
 	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
-	__auto_type l = (init);                                            \
+	AUTOTYPEOF(init) l = (init);                                       \
 	base_t e;                                                          \
 	for(__HAC_SEQ_NODE_T(base_t) *_node = _seq->b; _node; _node = _node->a){\
 		e = _node->v;                                                  \
@@ -31,7 +31,7 @@
 	base_t _r;                                                         \
 	switch(_seq->n){                                                   \
 		case 0:                                                        \
-		_r = *(base_t*)0;/*intentional*/                               \
+		_r = *(volatile base_t*)0;/*intentional*/                      \
 		break;                                                         \
 		case 1:                                                        \
 		_r = _seq->a->v;                                               \

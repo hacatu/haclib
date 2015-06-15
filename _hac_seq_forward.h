@@ -10,7 +10,7 @@
  */
 #define HAC_SEQ_FOLDR(base_t, seq, init, expr) ({                      \
 	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
-	__auto_type l = (init);                                            \
+	AUTOTYPEOF(init) l = (init);                                       \
 	HAC_SEQ_FOREACH(base_t, _seq, ({                                   \
 		l = ({expr;});                                                 \
 	}));                                                               \
@@ -29,7 +29,7 @@
 	base_t _r;                                                         \
 	switch(_seq->n){                                                   \
 		case 0:                                                        \
-		_r = *(base_t*)0;/*intentional*/                               \
+		_r = *(volatile base_t*)0;/*intentional*/                      \
 		break;                                                         \
 		case 1:                                                        \
 		_r = _seq->b->v;                                               \

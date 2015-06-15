@@ -1,4 +1,7 @@
 /**@file _hac_seq_sortable.h*/
+#define /*void*/__HAC_SEQ_ISORT(base_t, /*HAC_SEQ_T**/n, comp) ({      \
+})
+
 #define /*__HAC_SEQ_NODE_T**/__HAC_SEQ_MERGE_SORTED(base_t, /*__HAC_SEQ_NODE_T**/na, /*__HAC_SEQ_NODE_T**/nb, /*size_t*/sa, /*size_t*/sb, comp) ({\
 	size_t _a = sa, _b = sb;                                           \
 	__HAC_SEQ_NODE_T(base_t) *_s, *_n;                                 \

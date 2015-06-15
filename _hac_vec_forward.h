@@ -10,7 +10,7 @@
  */
 #define HAC_VEC_FOLDR(base_t, vec, init, expr) ({                      \
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
-	__auto_type l = (init);                                            \
+	AUTOTYPEOF(init) l = (init);                                       \
 	__HAC_VEC_FOREACH(base_t, _vec, ({                                 \
 		l = ({expr;});                                                 \
 	}));                                                               \

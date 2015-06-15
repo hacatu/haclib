@@ -54,7 +54,7 @@
 */
 
 double rand_double(void){
-	return rand()/(double)RAND_MAX;
+	return (double)rand()/((double)RAND_MAX + 1.);
 }
 
 int comp(int a, int b){
@@ -71,8 +71,7 @@ int main(void){
 	srand(time(NULL));
 	HAC_SEQ_T(int) seq = HAC_SEQ_RANGE(int, 1, 10, 1);
 	HAC_SEQ_SHUFFLE(int, &seq, rand_double());
-	HAC_SEQ_SORT(int, &seq, comp(e1, e2));
-	puts("Sorted:");
+	puts("Shuffled:");
 	HAC_SEQ_FOREACH(int, &seq, printf("%i,", e));
 	puts("");
 	HAC_SEQ_DELETE(int, &seq);

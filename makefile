@@ -1,5 +1,5 @@
 CC ?= gcc
-CFLAGS = -Wall -c -std=c11
+CFLAGS = -Wall -c -std=c99
 LDFLAGS = -lm
 TESTS =\
 hac_vec_foreach.test hac_vec_foldr.test hac_vec_foldl.test hac_vec_filter.test hac_vec_sort.test\
