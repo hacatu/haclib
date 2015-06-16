@@ -33,6 +33,9 @@
 #undef __HAC_SEQ_KSHUFFLE_ARR
 #undef __HAC_SEQ_KSHUFFLE
 #undef HAC_SEQ_SHUFFLE
+#undef __HAC_SEQ_REMOVE
+#undef __HAC_SEQ_INSERTL
+#undef __HAC_SEQ_ISTEP
 #undef __HAC_SEQ_ISORT
 #undef HAC_SEQ_SORT
 
