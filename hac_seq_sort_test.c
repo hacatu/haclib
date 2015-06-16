@@ -43,13 +43,11 @@
 #undef HAC_SEQ_FOLDL
 #undef HAC_SEQ_POPL
 #undef HAC_SEQ_PUSHL
-//#undef __HAC_SEQ_FIXP
-//#undef __HAC_SEQ_SHUFFLE_MERGE
-//#undef __HAC_SEQ_SHUFFLE_STEP
-//#undef HAC_SEQ_SHUFFLE
-//#undef __HAC_SEQ_MERGE_SORTED
-//#undef __HAC_SEQ_MSTEP
-//#undef __HAC_SEQ_MSORT
+#undef __HAC_SEQ_FIXP
+#undef __HAC_SEQ_KSHUFFLE_ARR
+#undef __HAC_SEQ_KSHUFFLE
+#undef HAC_SEQ_SHUFFLE
+//#undef __HAC_SEQ_ISORT
 //#undef HAC_SEQ_SORT
 */
 
@@ -69,9 +67,13 @@ int comp(int a, int b){
 int main(void){
 	HAC_SEQ_T_NEW(int);
 	srand(time(NULL));
-	HAC_SEQ_T(int) seq = HAC_SEQ_RANGE(int, 1, 10, 1);
+	HAC_SEQ_T(int) seq = HAC_SEQ_RANGE(int, 1, 3, 1);
 	HAC_SEQ_SHUFFLE(int, &seq, rand_double());
 	puts("Shuffled:");
+	HAC_SEQ_FOREACH(int, &seq, printf("%i,", e));
+	puts("");
+	HAC_SEQ_SORT(int, &seq, comp(e1, e2));
+	printf("Sorted (%i):\n", (int)seq.n);
 	HAC_SEQ_FOREACH(int, &seq, printf("%i,", e));
 	puts("");
 	HAC_SEQ_DELETE(int, &seq);

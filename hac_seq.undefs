@@ -30,11 +30,9 @@
 #undef HAC_SEQ_POPL
 #undef HAC_SEQ_PUSHL
 #undef __HAC_SEQ_FIXP
-#undef __HAC_SEQ_SHUFFLE_MERGE
-#undef __HAC_SEQ_SHUFFLE_STEP
+#undef __HAC_SEQ_KSHUFFLE_ARR
+#undef __HAC_SEQ_KSHUFFLE
 #undef HAC_SEQ_SHUFFLE
-#undef __HAC_SEQ_MERGE_SORTED
-#undef __HAC_SEQ_MSTEP
-#undef __HAC_SEQ_MSORT
+#undef __HAC_SEQ_ISORT
 #undef HAC_SEQ_SORT
 

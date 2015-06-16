@@ -12,7 +12,6 @@
 #define /*void*/__HAC_SEQ_KSHUFFLE(base_t, /*HAC_SEQ_T**/seq, rand) ({ \
 	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
 	HAC_WITH(base_t *_a, malloc((_seq->n)*sizeof(base_t)), _a, ({      \
-		puts("shuffling array");                                       \
 		size_t _i = 0;                                                 \
 		HAC_SEQ_FOREACH(base_t, _seq, ({                               \
 			_a[_i++] = e;                                              \

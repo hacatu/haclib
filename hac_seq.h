@@ -113,7 +113,7 @@
 		--_i;                                                          \
 	}                                                                  \
 	(seq)->b = _node;                                                  \
-	(seq)->a = (seq)->b = NULL;                                        \
+	(seq)->a->a = (seq)->b->b = NULL;                                  \
 })//END __HAC_SEQ_FIXP
 
 #include "_hac_seq_base.h"
