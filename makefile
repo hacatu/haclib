@@ -1,5 +1,5 @@
 CC ?= gcc
-PY = python
+PY = python3
 CFLAGS = -Wall -c -std=c99
 LDFLAGS = -lm
 INCLUDE = /usr/include
