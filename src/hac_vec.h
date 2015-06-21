@@ -106,14 +106,14 @@
 	!!_tmp;                                                            \
 })//END HAC_VEC_PUSHR
 
-#include "_hac_vec_base.h"
-#include "_hac_vec_functor.h"
-#include "_hac_vec_monoid.h"
-#include "_hac_vec_collection.h"
-#include "_hac_vec_forward.h"
-#include "_hac_vec_reverse.h"
-#include "_hac_vec_access.h"
-#include "_hac_vec_sortable.h"
+#include "hac_vec/_hac_vec_base.h"
+#include "hac_vec/_hac_vec_functor.h"
+#include "hac_vec/_hac_vec_monoid.h"
+#include "hac_vec/_hac_vec_collection.h"
+#include "hac_vec/_hac_vec_forward.h"
+#include "hac_vec/_hac_vec_reverse.h"
+#include "hac_vec/_hac_vec_access.h"
+#include "hac_vec/_hac_vec_sortable.h"
 
 #endif
 

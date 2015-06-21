@@ -1,0 +1,77 @@
+/**@file _hac_avl___traversal.h*/
+#define __HAC_AVL_FIRST_POSTORDER(base_t, root) ({                     \
+	__HAC_AVL_NODE_T(base_t) *_ret = (root);                           \
+	while(1){                                                          \
+		if(_ret->a){                                                   \
+			_ret = _ret->a;                                            \
+		}else if(_ret->b){                                             \
+			_ret = _ret->b;                                            \
+		}else{                                                         \
+			break;                                                     \
+		}                                                              \
+	}                                                                  \
+	_ret;                                                              \
+})//END __HAC_AVL_FIRST_POSTORDER
+
+#define __HAC_AVL_NEXT_POSTORDER(base_t, n) ({                         \
+	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
+	if(!_ret->p){/*_ret is root.*/                                     \
+		_ret = NULL;                                                   \
+	}else if(_ret->p->a == _ret){/*_ret is the left child.*/           \
+		_ret = __HAC_AVL_FIRST_POSTORDER(base_t, _ret->p->b);          \
+	}else{                                                             \
+		_ret = _ret->p;                                                \
+	}                                                                  \
+	_ret;                                                              \
+})//END __HAC_AVL_NEXT_POSTORDER
+
+#define __HAC_AVL_FIRST_PREORDER(base_t, root) (root)
+
+#define __HAC_AVL_NEXT_PREORDER(base_t, n) ({                          \
+	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
+	if(_ret->a){                                                       \
+		_ret = _ret->a;                                                \
+	}else if(_ret->b){                                                 \
+		_ret = _ret->b;                                                \
+	}else{                                                             \
+		while(_ret->p && _ret == _ret->p->b){                          \
+			_ret = _ret->p;                                            \
+		}                                                              \
+		if(!_ret->p){                                                  \
+			_ret = NULL;                                               \
+		}else{                                                         \
+			_ret = _ret->p->b;                                         \
+		}                                                              \
+	}                                                                  \
+	_ret;                                                              \
+})//END __HAC_AVL_NEXT_PREORDER
+
+#define __HAC_AVL_NEXT_PREORDER_WRAPPED(base_t, n, f) ({               \
+	__HAC_AVL_NODE_T(base_t) *_n = calloc(1, sizeof(__HAC_AVL_NODE_T(base_t)));\
+	if(_n){                                                            \
+		if(n->a){                                                      \
+			n = n->a;                                                  \
+			f->a = _n;                                                 \
+		}else if(n->b){                                                \
+			n = n->b;                                                  \
+			f = f->b = _n;                                             \
+		}else{                                                         \
+			while(n->p && n == n->p->b){                               \
+				n = n->p;                                              \
+				f->p = _n;                                             \
+			}                                                          \
+			if(!n->p){                                                 \
+				free(_n);                                              \
+				_n = n = NULL;                                         \
+			}else{                                                     \
+				n = n->p->b;                                           \
+				f->p->b = _n;                                          \
+			}                                                          \
+		}                                                              \
+		if(_n){                                                        \
+			_n->p = f;                                                 \
+		}                                                              \
+	}                                                                  \
+	f = _n;                                                            \
+})//END __HAC_AVL_NEXT_PREORDER_WRAPPED
+

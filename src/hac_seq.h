@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hac_util.h"
-#include "hac_pair.h"
 
 #define __HAC_SEQ_T(base_t) __HAC_SEQ_##base_t##_T
 
@@ -116,14 +115,14 @@
 	(seq)->a->a = (seq)->b->b = NULL;                                  \
 })//END __HAC_SEQ_FIXP
 
-#include "_hac_seq_base.h"
-#include "_hac_seq_functor.h"
-#include "_hac_seq_monoid.h"
-#include "_hac_seq_collection.h"
-#include "_hac_seq_forward.h"
-#include "_hac_seq_reverse.h"
-#include "_hac_seq_shuffle.h"
-#include "_hac_seq_sortable.h"
+#include "hac_seq/_hac_seq_base.h"
+#include "hac_seq/_hac_seq_functor.h"
+#include "hac_seq/_hac_seq_monoid.h"
+#include "hac_seq/_hac_seq_collection.h"
+#include "hac_seq/_hac_seq_forward.h"
+#include "hac_seq/_hac_seq_reverse.h"
+#include "hac_seq/_hac_seq_shuffle.h"
+#include "hac_seq/_hac_seq_sortable.h"
 
 #endif
 

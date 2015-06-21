@@ -60,7 +60,7 @@
  * @brief Sorts a sequence.
  * Uses insertion sort.
  * @param base_t the base type.
- * @param seq a pointer to the sequence to sort
+ * @param seq a pointer to the sequence to sort.
  * @param comp an expression containing e1 and e2 (the elements to be compared).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
  */
 #define HAC_SEQ_SORT(base_t, seq, comp) __HAC_SEQ_ISORT(base_t, seq, comp)//TODO: add mergesort.
