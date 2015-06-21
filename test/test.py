@@ -51,7 +51,7 @@ def makeTest(path, files):
 		else:
 			print("compiling c files in " + path)
 			print("gcc -I" + os.path.dirname(os.path.abspath(__file__)) + "/../src ...")
-			status = subprocess.call(["gcc", "-I" + os.path.dirname(os.path.abspath(__file__)) + "/../src", "-o", "test.test"] + [srcfile for srcfile in files if srcfile.endswith(".c")], cwd=path)
+			status = subprocess.call(["gcc", "-std=c99", "-I" + os.path.dirname(os.path.abspath(__file__)) + "/../src", "-o", "test.test"] + [srcfile for srcfile in files if srcfile.endswith(".c")], cwd=path)
 			files.append("test.test")
 	expected = [filename for filename in files if filename.endswith(".expected")]
 	expected = expected[0] if expected else None
