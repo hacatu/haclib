@@ -1,4 +1,5 @@
 /**@file _hac_avl_rotation.h*/
+#define __HAC_AVL_RECOMPUTE_K(base_t, n) (n->k = (n->a ? n->a->k : 0) - (n->b ? n->b->k : 0))
 
 /*
  *     Q           P
@@ -19,6 +20,8 @@
 	}                                                                  \
 	_p->b = q;                                                         \
 	q->a = _b;                                                         \
+	__HAC_AVL_RECOMPUTE_K(base_t, q);                                  \
+	__HAC_AVL_RECOMPUTE_K(base_t, _p);                                 \
 	_p;                                                                \
 })//END __HAC_AVL_ROTATER
 
@@ -34,6 +37,8 @@
 	}                                                                  \
 	_q->a = p;                                                         \
 	p->b = _b;                                                         \
+	__HAC_AVL_RECOMPUTE_K(base_t, p);                                  \
+	__HAC_AVL_RECOMPUTE_K(base_t, _q);                                 \
 	_q;                                                                \
 })//END __HAC_AVL_ROTATEL
 

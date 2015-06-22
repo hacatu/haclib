@@ -44,25 +44,23 @@
 })//END HAC_AVL_COPY
 
 /**
- * @brief Creates a sequence from a plain old array.
+ * @brief Creates an avl tree from a plain old array.
  * Does not deep copy the values in any way.
  * @param base_t the base type.
  * @param size the number of elements to copy from array.
  * @param array the array to copy from (eg an array, a pointer, or the a member of a vector).
+ * @return an avl tree with size members copied from array.
  */
-#define HAC_SEQ_FROM(base_t, size, array) ({                           \
+#define HAC_AVL_FROM(base_t, size, array) ({                           \
 	size_t _m = (size);                                                \
-	base_t *_a;                                                        \
-	HAC_SEQ_T(base_t) _ret = HAC_SEQ_EMPTY(base_t);                    \
-	for(size_t _i = 0; _i < _m; ++i){                                  \
-		if(!__HAC_SEQ_PUSHR_NN(base_t, &_ret, _a[_i])){                \
-			HAC_SEQ_DELETE(base_t, &_ret);                             \
+	base_t *_a = (array);                                              \
+	HAC_AVL_T(base_t) _from = HAC_AVL_EMPTY(base_t);                   \
+	for(size_t _i = 0; _i < _m; ++_i){                                 \
+		if(!__HAC_AVL_INSERT(base_t, &_from, _a[_i])){                 \
+			HAC_AVL_DELETE(base_t, &_from);                            \
 			break;                                                     \
 		}                                                              \
 	}                                                                  \
-	if(_ret.a){                                                        \
-		_ret.n = _m;                                                   \
-	}                                                                  \
-	_ret;                                                              \
-})//END HAC_SEQ_FROM
+	_from;                                                             \
+})//END HAC_AVL_FROM
 

@@ -27,7 +27,7 @@
 /**
  * @brief find the node with the nearest value to a key value in an avl tree.
  * @param base_t the base type.
- * @param avl a pointer to the tree to insert into.
+ * @param avl a pointer to the tree to search.
  * @param key the value to look for in avl
  * @param comp an expression containing e1 and e2 (the elements to compare).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
  * @return a pointer to the nearest node.
@@ -41,4 +41,28 @@
 	}                                                                  \
 	_nearest;                                                          \
 })//END HAC_AVL_NEAREST
+
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_GET(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/key, comp) ({\
+	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, key, comp)\
+	if(_n && ({base_t e1 = _n->v, e2 = key; comp;})){                  \
+		_n = NULL;                                                     \
+	}                                                                  \
+	_n;                                                                \
+})//END __HAC_AVL_GET
+
+/**
+ * @brief get the node with the value equal to a key value in an avl tree.
+ * @param base_t the base type.
+ * @param avl a pointer to the tree to search.
+ * @param key the value to look for in avl
+ * @param comp an expression containing e1 and e2 (the elements to compare).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
+ * @return a pointer to the matching node, or NULL if not found.
+ */
+#define HAC_AVL_GET(base_t, avl, key, comp) ({                         \
+	__HAC_AVL_NODE_T(base_t) *_nearest = HAC_AVL_NEAREST(base_t, avl, key, comp);\
+	if(_nearest && ({base_t e1 = _nearest->v, e2 = key; comp;})){      \
+		_nearest = NULL;                                               \
+	}                                                                  \
+	_nearest;                                                          \
+})//END HAC_AVL_GET
 

@@ -51,9 +51,9 @@
  */
 #define HAC_SEQ_FROM(base_t, size, array) ({                           \
 	size_t _m = (size);                                                \
-	base_t *_a;                                                        \
+	base_t *_a = array;                                                \
 	HAC_SEQ_T(base_t) _ret = HAC_SEQ_EMPTY(base_t);                    \
-	for(size_t _i = 0; _i < _m; ++i){                                  \
+	for(size_t _i = 0; _i < _m; ++_i){                                 \
 		if(!__HAC_SEQ_PUSHR_NN(base_t, &_ret, _a[_i])){                \
 			HAC_SEQ_DELETE(base_t, &_ret);                             \
 			break;                                                     \
