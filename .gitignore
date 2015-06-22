@@ -6,6 +6,7 @@ latex/*
 *.test
 expanded.c
 *.out
+*.output
 *.prof
 *.out.*
 *.log
