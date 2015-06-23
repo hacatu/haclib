@@ -20,6 +20,7 @@
 #undef HAC_AVL_EMPTY
 #undef __HAC_AVL_NEW
 #undef HAC_AVL_NEW
+#undef __HAC_AVL_CLIMB
 #undef __HAC_AVL_NEAREST
 #undef HAC_AVL_NEAREST
 #undef __HAC_AVL_GET
