@@ -1,4 +1,11 @@
 /**@file _hac_avl_get.h*/
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_CLIMB(base_t, /*__HAC_AVL_NODE_T**/n) ({\
+	while(n->p){                                                       \
+		n = n->p;                                                      \
+	}                                                                  \
+	n;                                                                 \
+})//END __HAC_AVL_CLIMB
+
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEAREST(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/key, comp) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = root;                               \
 	int _o;                                                            \

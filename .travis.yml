@@ -9,8 +9,6 @@ addons:
 compiler:
   - gcc-4.9
 script:
-  cat << EOF > test.conf
-  cc gcc-4.9
-  cflags -Wall -std=c99 -I~/src/
-  EOF
+  echo "cc gcc-4.9" > test.conf
+  echo "cflags -Wall -std=c99 -I~/src/" >> test.conf
   make PY=python3 test

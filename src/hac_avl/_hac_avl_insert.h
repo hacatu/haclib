@@ -48,7 +48,10 @@
 			_n = _v;                                                   \
 			__HAC_AVL_INSERT_FIXK(base_t, _n);                         \
 			_n = _v;                                                   \
+			/*                                                         \
 			_n = __HAC_AVL_INSERT_REBALANCE(base_t, _n);               \
+			*/                                                         \
+			_n = __HAC_AVL_CLIMB(base_t, _n);                          \
 		}else{                                                         \
 			_n = NULL;                                                 \
 		}                                                              \
