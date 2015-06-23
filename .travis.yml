@@ -8,4 +8,9 @@ addons:
     - python3
 compiler:
   - gcc-4.9
-script: make PY=python3 test
+script:
+  cat << EOF > test.conf
+  cc gcc-4.9
+  cflags -Wall -std=c99 -I~/src/
+  EOF
+  make PY=python3 test
