@@ -1,5 +1,5 @@
 /**@file _hac_avl_insert.h*/
-#define __HAC_AVL_INSERT_FIXK(base_t, n) ({                            \
+#define /*void*/__HAC_AVL_INSERT_FIXK(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	while(n->p){                                                       \
 		if(n == n->p->a){                                              \
 			++n->p->k;                                                 \
@@ -10,8 +10,10 @@
 	}                                                                  \
 })//END __HAC_AVL_INSERT_FIXK
 
-#define __HAC_AVL_INSERT_REBALANCE(base_t, n) ({                       \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT_REBALANCE(base_t, /*__HAC_AVL_NODE_T**/n) ({\
+	__HAC_AVL_NODE_T(base_t) *_n_ = n;                                 \
 	while(n){                                                          \
+		_n_ = n;                                                       \
 		if(n->k == 2){                                                 \
 			if(n->a->k == -1){                                         \
 				__HAC_AVL_ROTATEL(base_t, n->a);                       \
@@ -21,14 +23,15 @@
 			if(n->b->k == 1){                                          \
 				__HAC_AVL_ROTATER(base_t, n->b);                       \
 			}                                                          \
-			__HAC_AVL_ROTATEL(base_t, n->a);                           \
+			__HAC_AVL_ROTATEL(base_t, n);                              \
 		}                                                              \
 		n = n->p;                                                      \
 	}                                                                  \
+	_n_;                                                               \
 })//END __HAC_AVL_INSERT_REBALANCE
 
-#define __HAC_AVL_INSERT(base_t, root, val, comp) ({                   \
-	int _ret = 0, _o;                                                  \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
+	int _o;                                                            \
 	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, val, comp), *_v;\
 	base_t e1, e2;                                                     \
 	_o = ({e1 = val; e2 = _n->v; comp;});                              \
@@ -45,11 +48,12 @@
 			_n = _v;                                                   \
 			__HAC_AVL_INSERT_FIXK(base_t, _n);                         \
 			_n = _v;                                                   \
-			__HAC_AVL_INSERT_REBALANCE(base_t, _n);                    \
-			_ret = 1;                                                  \
+			_n = __HAC_AVL_INSERT_REBALANCE(base_t, _n);               \
+		}else{                                                         \
+			_n = NULL;                                                 \
 		}                                                              \
 	}                                                                  \
-	_ret;                                                              \
+	_n;                                                                \
 })//END __HAC_AVL_INSERT
 
 /**
@@ -63,13 +67,18 @@
  */
 #define HAC_AVL_INSERT(base_t, avl, val, comp) ({                      \
 	int _ret = 0;                                                      \
+	__HAC_AVL_NODE_T(base_t) *_n;                                      \
 	HAC_AVL_T(base_t) *_avl = (avl);                                   \
 	base_t _val = (val);                                               \
 	if(!_avl->r){                                                      \
 		*_avl = HAC_AVL_NEW(base_t, _val);                             \
 		_ret = !!_avl->r;                                              \
 	}else{                                                             \
-		_ret = __HAC_AVL_INSERT(base_t, _avl->r, _val, comp);          \
+		_n = __HAC_AVL_INSERT(base_t, _avl->r, _val, comp);            \
+		if(_n){                                                        \
+			_avl->r = _n;                                              \
+			_ret = 1;                                                  \
+		}                                                              \
 	}                                                                  \
 	_ret;                                                              \
 })//END HAC_AVL_INSERT

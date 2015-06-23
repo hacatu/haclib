@@ -1,6 +1,4 @@
 /**@file _hac_avl_rotation.h*/
-#define __HAC_AVL_RECOMPUTE_K(base_t, n) (n->k = (n->a ? n->a->k : 0) - (n->b ? n->b->k : 0))
-
 /*
  *     Q           P
  *    / \  Right  / \
@@ -9,36 +7,46 @@
  * A   B   Left    B   C
  */
 /*Assumes P exists.*/
-#define __HAC_AVL_ROTATER(base_t, q) ({                                \
-	__HAC_AVL_NODE_T(base_t) *_p = q->a, *_b = _p->b;                  \
-	if(q->p){                                                          \
-		if(q == q->p->a){                                              \
-			q->p->a = _p;                                              \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_ROTATER(base_t, /*__HAC_AVL_NODE_T**/nq) ({\
+	__HAC_AVL_NODE_T(base_t) *_q = (nq), *_p = _q->a, *_b = _p->b;     \
+	if(_q->p){                                                         \
+		if(_q == _q->p->a){                                            \
+			_q->p->a = _p;                                             \
 		}else{                                                         \
-			q->p->b = _p;                                              \
+			_q->p->b = _p;                                             \
 		}                                                              \
 	}                                                                  \
-	_p->b = q;                                                         \
-	q->a = _b;                                                         \
-	__HAC_AVL_RECOMPUTE_K(base_t, q);                                  \
-	__HAC_AVL_RECOMPUTE_K(base_t, _p);                                 \
+	_p->b = _q;                                                        \
+	_q->a = _b;                                                        \
+	_p->p = _q->p;                                                     \
+	_q->p = _p;                                                        \
+	--_q->k;                                                           \
+	if(_p->k > 0){/*a is longer than b*/                               \
+		_q->k -= _p->k;                                                \
+	}                                                                  \
+	--_p->k;/*NOTE: this assumes q->k started > -2 (if q->k == -2, rotatel would be used*/\
 	_p;                                                                \
 })//END __HAC_AVL_ROTATER
 
 /*Assumes Q exists.*/
-#define __HAC_AVL_ROTATEL(base_t, p) ({                                \
-	__HAC_AVL_NODE_T(base_t) *_q = p->a, *_b = _q->a;                  \
-	if(p->p){                                                          \
-		if(p == p->p->a){                                              \
-			p->p->a = _q;                                              \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_ROTATEL(base_t, /*__HAC_AVL_NODE_T**/np) ({\
+	__HAC_AVL_NODE_T(base_t) *_p = (np), *_q = _p->b, *_b = _q->a;     \
+	if(_p->p){                                                         \
+		if(_p == _p->p->a){                                            \
+			_p->p->a = _q;                                             \
 		}else{                                                         \
-			p->p->b = _q;                                              \
+			_p->p->b = _q;                                             \
 		}                                                              \
 	}                                                                  \
-	_q->a = p;                                                         \
-	p->b = _b;                                                         \
-	__HAC_AVL_RECOMPUTE_K(base_t, p);                                  \
-	__HAC_AVL_RECOMPUTE_K(base_t, _q);                                 \
+	_q->a = _p;                                                        \
+	_p->b = _b;                                                        \
+	_q->p = _p->p;                                                     \
+	_p->p = _q;                                                        \
+	++_p->k;                                                           \
+	if(_q->k < 0){/*c is longer than b*/                               \
+		_p->k -= _q->k;                                                \
+	}                                                                  \
+	++_q->k;/*NOTE: this assumes q->k started < 2 (if q->k == 2, rotater would be used*/\
 	_q;                                                                \
 })//END __HAC_AVL_ROTATEL
 

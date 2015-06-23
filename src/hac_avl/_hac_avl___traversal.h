@@ -1,5 +1,5 @@
 /**@file _hac_avl___traversal.h*/
-#define __HAC_AVL_FIRST_POSTORDER(base_t, root) ({                     \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_POSTORDER(base_t, /*__HAC_AVL_NODE_T**/root) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret_ = (root);                          \
 	while(1){                                                          \
 		if(_ret_->a){                                                  \
@@ -13,21 +13,25 @@
 	_ret_;                                                             \
 })//END __HAC_AVL_FIRST_POSTORDER
 
-#define __HAC_AVL_NEXT_POSTORDER(base_t, n) ({                         \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_POSTORDER(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(!_ret->p){/*_ret is root.*/                                     \
 		_ret = NULL;                                                   \
 	}else if(_ret->p->a == _ret){/*_ret is the left child.*/           \
-		_ret = __HAC_AVL_FIRST_POSTORDER(base_t, _ret->p->b);          \
+		if(_ret->p->b){                                                \
+			_ret = __HAC_AVL_FIRST_POSTORDER(base_t, _ret->p->b);      \
+		}else{                                                         \
+			_ret = _ret->p;                                            \
+		}                                                              \
 	}else{                                                             \
 		_ret = _ret->p;                                                \
 	}                                                                  \
 	_ret;                                                              \
 })//END __HAC_AVL_NEXT_POSTORDER
 
-#define __HAC_AVL_FIRST_PREORDER(base_t, root) (root)
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_PREORDER(base_t, /*__HAC_AVL_NODE_T**/root) (root)
 
-#define __HAC_AVL_NEXT_PREORDER(base_t, n) ({                          \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_PREORDER(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(_ret->a){                                                       \
 		_ret = _ret->a;                                                \
@@ -46,7 +50,7 @@
 	_ret;                                                              \
 })//END __HAC_AVL_NEXT_PREORDER
 
-#define __HAC_AVL_NEXT_PREORDER_WRAPPED(base_t, n, f) ({               \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_PREORDER_WRAPPED(base_t, /*__HAC_AVL_NODE_T**/n, /*__HAC_AVL_NODE_T**/f) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = calloc(1, sizeof(__HAC_AVL_NODE_T(base_t)));\
 	if(_n){                                                            \
 		if(n->a){                                                      \
@@ -75,7 +79,7 @@
 	f = _n;                                                            \
 })//END __HAC_AVL_NEXT_PREORDER_WRAPPED
 
-#define __HAC_AVL_FIRST_INORDER(base_t, root) ({                       \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_INORDER(base_t, /*__HAC_AVL_NODE_T**/root) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret_ = (root);                          \
 	while(_ret_->a){                                                   \
 		_ret_ = _ret_->a;                                              \
@@ -83,7 +87,7 @@
 	_ret_;                                                             \
 })//END __HAC_AVL_FIRST_INORDER
 
-#define __HAC_AVL_NEXT_INORDER(base_t, n) ({                           \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_INORDER(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(_ret->b){/*_ret has a right subtree, traverse it*/              \
 		_ret = __HAC_AVL_FIRST_INORDER(base_t, _ret->b);               \
@@ -102,7 +106,7 @@
 	_ret;                                                              \
 })//END __HAC_AVL_NEXT_INORDER
 
-#define __HAC_AVL_LAST_INORDER(base_t, root) ({                        \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_LAST_INORDER(base_t, /*__HAC_AVL_NODE_T**/root) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret_ = (root);                          \
 	while(_ret_->b){                                                   \
 		_ret_ = _ret_->b;                                              \
@@ -110,7 +114,7 @@
 	_ret_;                                                             \
 })//END __HAC_AVL_FIRST_INORDER
 
-#define __HAC_AVL_PREV_INORDER(base_t, n) ({                           \
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_PREV_INORDER(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(_ret->a){/*_ret has a left subtree, traverse it*/               \
 		_ret = __HAC_AVL_LAST_INORDER(base_t, _ret->a);                \
