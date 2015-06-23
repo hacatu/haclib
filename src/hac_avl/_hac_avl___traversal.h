@@ -91,8 +91,8 @@
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(_ret->b){/*_ret has a right subtree, traverse it*/              \
 		_ret = __HAC_AVL_FIRST_INORDER(base_t, _ret->b);               \
-	}else{/*_ret does not have a right subtree, walk up the tree*/     \
-		while(1){                                                      \
+	}else{                                                             \
+		while(1){/*walk up the tree*/                                  \
 			if(!_ret->p){/*_ret is root*/                              \
 				_ret = NULL;                                           \
 				break;                                                 \
@@ -101,6 +101,7 @@
 				_ret = _ret->p;                                        \
 				break;                                                 \
 			}                                                          \
+			_ret = _ret->p;                                            \
 		}                                                              \
 	}                                                                  \
 	_ret;                                                              \
@@ -118,8 +119,8 @@
 	__HAC_AVL_NODE_T(base_t) *_ret = (n);                              \
 	if(_ret->a){/*_ret has a left subtree, traverse it*/               \
 		_ret = __HAC_AVL_LAST_INORDER(base_t, _ret->a);                \
-	}else{/*_ret does not have a left subtree, walk up the tree*/      \
-		while(1){                                                      \
+	}else{                                                             \
+		while(1){/*walk up the tree*/                                  \
 			if(!_ret->p){/*_ret is root*/                              \
 				_ret = NULL;                                           \
 				break;                                                 \
@@ -128,8 +129,15 @@
 				_ret = _ret->p;                                        \
 				break;                                                 \
 			}                                                          \
+			_ret = _ret->p;                                            \
 		}                                                              \
 	}                                                                  \
 	_ret;                                                              \
 })//END __HAC_AVL_PREV_INORDER
+
+#define /*void*/__HAC_AVL_PRINT(base_t, /*__HAC_AVL_NODE_T**/root) ({  \
+	for(__HAC_AVL_NODE_T(base_t) *_it = __HAC_AVL_FIRST_INORDER(base_t, root); _it; _it = __HAC_AVL_NEXT_INORDER(base_t, _it)){\
+		printf("%i,", _it->v);                                         \
+	}                                                                  \
+})//END __HAC_AVL_PRINT
 

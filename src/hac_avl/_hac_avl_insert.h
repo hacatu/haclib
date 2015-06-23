@@ -30,31 +30,32 @@
 	_n_;                                                               \
 })//END __HAC_AVL_INSERT_REBALANCE
 
-#define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
-	int _o;                                                            \
-	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, val, comp), *_v;\
-	base_t e1, e2;                                                     \
-	_o = ({e1 = val; e2 = _n->v; comp;});                              \
+#define __HAC_AVL_INSERT_BALANCE __HAC_AVL_INSERT_REBALANCE
+
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT_UNBALANCED(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
+	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, val, comp), *_v = NULL;\
+	int _o = ({base_t e1 = val, e2 = _n->v; comp;});                   \
 	if(_o){                                                            \
 		_v = calloc(1, sizeof(__HAC_AVL_NODE_T(base_t)));              \
 		if(_v){                                                        \
 			_v->v = val;                                               \
-			_v->p = _n;                                                \
+			_v-p = _n;                                                 \
 			if(_o < 0){                                                \
 				_n->a = _v;                                            \
 			}else{                                                     \
 				_n->b = _v;                                            \
 			}                                                          \
 			_n = _v;                                                   \
-			__HAC_AVL_INSERT_FIXK(base_t, _n);                         \
-			_n = _v;                                                   \
-			/*                                                         \
-			_n = __HAC_AVL_INSERT_REBALANCE(base_t, _n);               \
-			*/                                                         \
-			_n = __HAC_AVL_CLIMB(base_t, _n);                          \
-		}else{                                                         \
-			_n = NULL;                                                 \
+			__HAC_AVL_FIXK(base_t, _n);                                \
 		}                                                              \
+	}                                                                  \
+	_v;                                                                \
+})//END __HAC_AVL_INSERT_UNBALANCED
+
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
+	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_INSERT_UNBALANCED(base_t, root, val, comp);\
+	if(_n){                                                            \
+		_n = __HAC_AVL_INSERT_BALANCE(base_t, _n);                     \
 	}                                                                  \
 	_n;                                                                \
 })//END __HAC_AVL_INSERT
