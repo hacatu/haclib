@@ -5,6 +5,8 @@
  *   HAC_AVL_REMOVE()
  * 
  */
+#define __HAC_AVL_CHECK__
+
 #include <stdio.h>
 #include "hac_avl.h"
 
@@ -60,11 +62,22 @@ int compInts(int e1, int e2){
 int main(void){
 	HAC_AVL_T_NEW(int);
 	HAC_AVL_T(int) tree = HAC_AVL_EMPTY(int);
-	for(int i = 0, e; i < 10; ++i){
+	int es[10], i, e, t;
+	for(i = 0; i < 10; ++i){
 		e = rand();
+		es[i] = e;
 		printf("inserting %i\n", e);
 		HAC_AVL_INSERT(int, &tree, e, compInts(e1, e2));
 	}
-	HAC_AVL_DELETE(int, &tree);
+	while(i){
+		e = rand()%i;
+		t = es[e];
+		es[e] = es[i - 1];
+		es[i - 1] = t;
+		__HAC_AVL_PRINT(int, tree.r);
+		printf("\nremoving %i\n", t);
+		HAC_AVL_REMOVE(int, &tree, t, compInts(e1, e2));
+		--i;
+	}
 }
 

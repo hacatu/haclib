@@ -40,11 +40,11 @@
 })//END __HAC_AVL_REMOVE_NODE
 
 #define /*int*/__HAC_AVL_REMOVE(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
-	int _ret = 0, _o;                                                  \
+	int _ret = 0;                                                      \
 	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_GET(base_t, root, val, comp);\
 	if(_n){                                                            \
 		_ret = (_n->p) ? 1 : 2;/*if _n is the root, return 2 so the tree can have its root pointer nulled.*/\
-		__HAC_AVL_REMOVE_NODE(base_t, root, _n);                       \
+		__HAC_AVL_REMOVE_NODE(base_t, _n);                             \
 	}                                                                  \
 	_ret;                                                              \
 })//END __HAC_AVL_REMOVE

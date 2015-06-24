@@ -14,6 +14,9 @@ class Test:
 	def __call__(self):
 		def getSeed():
 			return [str(random.randint(0, 2**32 - 1))] if self.seed else []
+		if self.test is False:
+			print("Test.fail")
+			return False
 		test = ["./" + self.test]
 		if self.seed:
 			random.seed(self.seed)
@@ -32,6 +35,8 @@ class Test:
 						return False
 			printFile(outfile)
 		return True
+		
+Test.fail = Test(".", False, None, None, 1)
 
 def hasTest(files):
 	return any(filename.endswith((".test", ".c")) or filename == "makefile" for filename in files)
@@ -67,6 +72,8 @@ def makeTest(path, files, defaults):
 	status = 0;
 	if not any(filename.endswith(".test") for filename in files):
 		status = buildTest(path, files, options)
+	if status:
+		return Test.fail
 	expected = [filename for filename in files if filename.endswith(".expected")]
 	expected = expected[0] if expected else None
 	seed = options["seed"]

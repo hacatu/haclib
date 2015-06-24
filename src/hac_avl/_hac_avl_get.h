@@ -50,7 +50,7 @@
 })//END HAC_AVL_NEAREST
 
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_GET(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/key, comp) ({\
-	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, key, comp)\
+	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, key, comp);\
 	if(_n && ({base_t e1 = _n->v, e2 = key; comp;})){                  \
 		_n = NULL;                                                     \
 	}                                                                  \

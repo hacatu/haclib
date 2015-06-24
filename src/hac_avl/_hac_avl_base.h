@@ -64,3 +64,28 @@
 	_from;                                                             \
 })//END HAC_AVL_FROM
 
+#ifdef __HAC_AVL_CHECK__
+#define __HAC_AVL_A(n, s) (*(void**)(n + s - 3*sizeof(void*)))
+#define __HAC_AVL_B(n, s) (*(void**)(n + s - 2*sizeof(void*)))
+#define __HAC_AVL_P(n, s) (*(void**)(n + s - 1*sizeof(void*)))
+static int __HAC_AVL_CHECK(void *root, size_t size){
+	if(__HAC_AVL_A(root, size)){
+		if(root != __HAC_AVL_P(__HAC_AVL_A(root, size), size)){
+			return 0;
+		}
+		if(!__HAC_AVL_CHECK(__HAC_AVL_A(root, size), size)){
+			return 0;
+		}
+	}
+	if(__HAC_AVL_B(root, size)){
+		if(root != __HAC_AVL_P(__HAC_AVL_B(root, size), size)){
+			return 0;
+		}
+		if(!__HAC_AVL_CHECK(__HAC_AVL_B(root, size), size)){
+			return 0;
+		}
+	}
+	return 1;
+}
+#endif
+
