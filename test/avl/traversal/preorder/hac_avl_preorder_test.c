@@ -22,8 +22,10 @@
  *        \
  *        36
  */
+
+HAC_AVL_T_NEW(int);
+
 int main(void){
-	HAC_AVL_T_NEW(int);
 	__HAC_AVL_NODE_T(int) n[10] =
 	{/*This is so hacky I cried.*/
 	  /*{ v, k,  a,  b,  p},*/

@@ -25,7 +25,7 @@ HAC_AVL_T_NEW(int);
 
 void printOffset(void *base, void *memb, size_t s){
 	if(memb){
-		printf("n+%i", (memb - base)/s);
+		printf("n+%i", (int)(memb - base)/s);
 	}else{
 		printf("0x0");
 	}
