@@ -69,6 +69,9 @@
 #define __HAC_AVL_B(n, s) (*(void**)(n + s - 2*sizeof(void*)))
 #define __HAC_AVL_P(n, s) (*(void**)(n + s - 1*sizeof(void*)))
 static int __HAC_AVL_CHECK(void *root, size_t size){
+	if(!root){
+		return -1;
+	}
 	if(__HAC_AVL_A(root, size)){
 		if(root != __HAC_AVL_P(__HAC_AVL_A(root, size), size)){
 			return 0;

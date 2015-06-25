@@ -30,7 +30,7 @@
 	_n_;                                                               \
 })//END __HAC_AVL_INSERT_REBALANCE
 
-#define __HAC_AVL_INSERT_BALANCE __HAC_AVL_CLIMB
+#define __HAC_AVL_INSERT_BALANCE __HAC_AVL_INSERT_REBALANCE
 
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_INSERT_UNBALANCED(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, root, val, comp), *_v = NULL;\

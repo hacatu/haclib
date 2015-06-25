@@ -69,6 +69,7 @@ int main(void){
 		printf("inserting %i\n", e);
 		HAC_AVL_INSERT(int, &tree, e, compInts(e1, e2));
 	}
+	printf("root: %i\n", tree.r->v);
 	while(i){
 		e = rand()%i;
 		t = es[e];
@@ -77,6 +78,16 @@ int main(void){
 		__HAC_AVL_PRINT(int, tree.r);
 		printf("\nremoving %i\n", t);
 		HAC_AVL_REMOVE(int, &tree, t, compInts(e1, e2));
+		switch(__HAC_AVL_CHECK(tree.r, sizeof(__HAC_AVL_NODE_T(int)))){
+			case 0:
+			puts("sanity check failed");
+			break;
+			case 1:
+			break;
+			case -1:
+			puts("null root");
+			break;
+		}
 		--i;
 	}
 }
