@@ -1,13 +1,24 @@
 /**
+<<<<<<< HEAD
  * @file hac_avl_remove_test.c
+=======
+ * @file hac_avl_insert_test.c
+>>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
  * Tests:
  *  _hac_avl_remove.h:
  *   HAC_AVL_REMOVE()
  * 
  */
+<<<<<<< HEAD
 #include <stdio.h>
 #include "hac_avl.h"
 #include "hac_avl/_hac_avl_check.h"
+=======
+#define __HAC_AVL_CHECK__
+
+#include <stdio.h>
+#include "hac_avl.h"
+>>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 
 #if 0
 #undef __HAC_AVL_T
@@ -58,12 +69,20 @@ int compInts(int e1, int e2){
 	}
 }
 
+<<<<<<< HEAD
 HAC_AVL_T_NEW(int);
 
 int main(void){
 	HAC_AVL_T(int) tree = HAC_AVL_EMPTY(int);
 	int es[3], i, e, t;
 	for(i = 0; i < 3; ++i){
+=======
+int main(void){
+	HAC_AVL_T_NEW(int);
+	HAC_AVL_T(int) tree = HAC_AVL_EMPTY(int);
+	int es[10], i, e, t;
+	for(i = 0; i < 10; ++i){
+>>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 		e = rand();
 		es[i] = e;
 		printf("inserting %i\n", e);
@@ -78,8 +97,20 @@ int main(void){
 		__HAC_AVL_PRINT(int, tree.r);
 		printf("\nremoving %i\n", t);
 		HAC_AVL_REMOVE(int, &tree, t, compInts(e1, e2));
+<<<<<<< HEAD
 		if(!__HAC_AVL_CHECK(int, &tree)){
 			abort();
+=======
+		switch(__HAC_AVL_CHECK(tree.r, sizeof(__HAC_AVL_NODE_T(int)))){
+			case 0:
+			puts("sanity check failed");
+			break;
+			case 1:
+			break;
+			case -1:
+			puts("null root");
+			break;
+>>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 		}
 		--i;
 	}

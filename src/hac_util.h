@@ -38,6 +38,7 @@
 	}                                                                  \
 })//END HAC_WITH
 
+<<<<<<< HEAD
 /**
  * @brief absolute value.
  * Takes the absolute value of a basic real numeric type (complex will not work).
@@ -85,5 +86,7 @@
 	_b < _a ? _b : _a;                                                 \
 })//END HAC_MIN
 
+=======
+>>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 #endif
 
