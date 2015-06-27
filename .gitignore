@@ -1,0 +1,12 @@
+html
+html/*
+latex
+latex/*
+*.o
+*.test
+expanded.c
+*.out
+*.output
+*.prof
+*.out.*
+*.log
