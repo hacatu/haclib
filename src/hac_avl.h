@@ -64,13 +64,9 @@
 
 #include "hac_avl/_hac_avl_get.h"
 #include "hac_avl/_hac_avl___traversal.h"
-<<<<<<< HEAD
 #include "hac_avl/_hac_avl_rotation_k.h"
 #include "hac_avl/_hac_avl_rotation.h"
 #include "hac_avl/_hac_avl_balance.h"
-=======
-#include "hac_avl/_hac_avl_rotation.h"
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 #include "hac_avl/_hac_avl_insert.h"
 #include "hac_avl/_hac_avl_remove.h"
 #include "hac_avl/_hac_avl_base.h"

@@ -1,14 +1,9 @@
 /**@file _hac_avl_get.h*/
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_CLIMB(base_t, /*__HAC_AVL_NODE_T**/n) ({\
-<<<<<<< HEAD
 	if(n){                                                             \
 		while(n->p){                                                   \
 			n = n->p;                                                  \
 		}                                                              \
-=======
-	while(n->p){                                                       \
-		n = n->p;                                                      \
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 	}                                                                  \
 	n;                                                                 \
 })//END __HAC_AVL_CLIMB

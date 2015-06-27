@@ -1,5 +1,4 @@
 /**@file _hac_avl_remove.h*/
-<<<<<<< HEAD
 #define __HAC_AVL_REMOVE_BALANCE __HAC_AVL_REBALANCE
 
 #define __HAC_AVL_REMOVE_REPLACE(node, replacement) ({                 \
@@ -35,76 +34,26 @@
 		_t = _node;                                                    \
 		__HAC_AVL_REMOVE_FIXK(base_t, _t);                             \
 		_node = __HAC_AVL_REMOVE_BALANCE(base_t, _node);               \
-=======
-#define /*__HAC_AVL_NODE_T**/__HAC_AVL_REMOVE_TRUNK(base_t, /*__HAC_AVL_NODE_T**/node) ({\
-	__HAC_AVL_NODE_T(base_t) *_node = node;                            \
-	if(node->a){                                                       \
-		node->a->p = node->p;                                          \
-		if(node->p){                                                   \
-			if(node == node->p->a){                                    \
-				node->p->a = node->a;                                  \
-			}else{                                                     \
-				node->p->b = node->a;                                  \
-			}                                                          \
-		}                                                              \
-		_node = node->a;                                               \
-	}else if(node->b){                                                 \
-		node->b->p = node->p;                                          \
-		if(node->p){                                                   \
-			if(node == node->p->a){                                    \
-				node->p->a = node->b;                                  \
-			}else{                                                     \
-				node->p->b = node->b;                                  \
-			}                                                          \
-		}                                                              \
-		_node = node->b;                                               \
-	}else{                                                             \
-		if(node->p){                                                   \
-			if(node == node->p->a){                                    \
-				node->p->a = NULL;                                     \
-			}else{                                                     \
-				node->p->b = NULL;                                     \
-			}                                                          \
-		}                                                              \
-		_node = NULL;                                                  \
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 	}                                                                  \
 	free(node);                                                        \
 	_node;                                                             \
 })//END __HAC_AVL_REMOVE_TRUNK
 
-<<<<<<< HEAD
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_REMOVE_NODE(base_t, /*__HAC_AVL_NODE_T**/node) ({\
 	__HAC_AVL_NODE_T(base_t) *_z;                                      \
-=======
-#define /*__HAC_AVL_NODE_T**/__HAC_AVL_REMOVE_NODE(base_t, /*__HAC_AVL_NODE_T**/root, /*__HAC_AVL_NODE_T**/node) ({\
-	__HAC_AVL_NODE_T(base_t) *_z, *_root;                              \
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 	if(!(node->a && node->b)){/*node does not have 2 children*/        \
 		_z = node;                                                     \
 	}else{                                                             \
 		_z = __HAC_AVL_PREV_INORDER(base_t, node);                     \
 		node->v = _z->v;                                               \
 	}                                                                  \
-<<<<<<< HEAD
 	__HAC_AVL_REMOVE_TRUNK(base_t, _z);                                \
-=======
-	_root = __HAC_AVL_REMOVE_TRUNK(base_t, _z);                        \
-	if(_z != root){                                                    \
-		_root = root;                                                  \
-	}                                                                  \
-	_root;                                                             \
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 })//END __HAC_AVL_REMOVE_NODE
 
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_REMOVE(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/val, comp) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_GET(base_t, root, val, comp);\
 	if(_n){                                                            \
-<<<<<<< HEAD
 		_n = __HAC_AVL_REMOVE_NODE(base_t, _n);                        \
-=======
-		_n = __HAC_AVL_REMOVE_NODE(base_t, root, _n);                  \
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
 	}else{/*If val is not in the tree, return an unaligned pointer.*/  \
 		_n = (__HAC_AVL_NODE_T(base_t)*)(char*)1;                      \
 	}                                                                  \

@@ -64,8 +64,7 @@
 	_from;                                                             \
 })//END HAC_AVL_FROM
 
-<<<<<<< HEAD
-=======
+
 #ifdef __HAC_AVL_CHECK__
 #define __HAC_AVL_A(n, s) (*(void**)(n + s - 3*sizeof(void*)))
 #define __HAC_AVL_B(n, s) (*(void**)(n + s - 2*sizeof(void*)))
@@ -94,4 +93,3 @@ static int __HAC_AVL_CHECK(void *root, size_t size){
 }
 #endif
 
->>>>>>> e449e65b666b5be957b45a65357d77ff12dcdb10
