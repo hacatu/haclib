@@ -9,7 +9,7 @@
 #include "hac_avl.h"
 #include "hac_avl/_hac_avl_check.h"
 
-#if 1
+#if 0
 #undef HAC_AVL_T_NEW
 #undef __HAC_AVL_NODE_T
 #undef __HAC_AVL_NODE_CHECK
