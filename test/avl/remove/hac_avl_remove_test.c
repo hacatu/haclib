@@ -80,6 +80,10 @@ int main(void){
 		if(!__HAC_AVL_CHECK(int, &tree)){
 			abort();
 		}
+		if(!__HAC_AVL_CHECK_AVL(tree.r, sizeof(__HAC_AVL_NODE_T(int)))){
+			puts("CHECK_AVL failed");
+			abort();
+		}
 		--i;
 	}
 }

@@ -22,6 +22,11 @@
 #define AUTOTYPEOF(expr) __typeof__(expr)
 #endif
 
+#ifndef alignof
+#include <stddef.h>
+#define alignof(type) offsetof(struct{char c; type a;}, a)
+#endif
+
 /**
  * @brief evaluate an expression with a value bound to a variable.
  * Sets name to val.  If val fails cond, do nothing.  Otherwise, do expr.
@@ -84,6 +89,13 @@
 	AUTOTYPEOF(b) _b = (b);                                            \
 	_b < _a ? _b : _a;                                                 \
 })//END HAC_MIN
+
+/**
+ * @brief a do nothing function to set breakpoints in these macros.
+ * If in gdb, do `breakpoint HAC_BREAKPOINT` and then `command <number>` with the number of the breakpoint.
+ * Set the command to `frame 1`: this will back out of HAC_BREAKPOINT and let you debug some real code.
+ */
+void HAC_BREAKPOINT(void){}
 
 #endif
 
