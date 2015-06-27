@@ -15,21 +15,13 @@
 })//END __HAC_AVL_REMOVE_REPLACE
 
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_REMOVE_TRUNK(base_t, /*__HAC_AVL_NODE_T**/node) ({\
-	printf("trunk %i\n", node->v);                                     \
 	__HAC_AVL_NODE_T(base_t) *_node, *_t;                              \
 	int _fixed = 0;                                                    \
 	if(node->a){                                                       \
-		puts("trunk leans left");                                      \
 		_node = node->a;                                               \
-		HAC_BREAKPOINT();                                              \
-		__HAC_AVL_REMOVE_REPLACE(base_t, node, _node);                 \
-		HAC_BREAKPOINT();                                              \
 	}else if(node->b){                                                 \
-		puts("trunk leans right");                                     \
 		_node = node->b;                                               \
-		__HAC_AVL_REMOVE_REPLACE(base_t, node, _node);                 \
 	}else{                                                             \
-		puts("trunk is leaf");                                         \
 		_node = node;                                                  \
 		__HAC_AVL_REMOVE_FIXK(base_t, _node);                          \
 		_node = node->p;                                               \
@@ -38,6 +30,7 @@
 		__HAC_AVL_REMOVE_REPLACE(base_t, node, NULL);                  \
 	}                                                                  \
 	if(!_fixed){                                                       \
+		__HAC_AVL_REMOVE_REPLACE(base_t, node, _node);                 \
 		_t = _node;                                                    \
 		__HAC_AVL_REMOVE_FIXK(base_t, _t);                             \
 		_node = __HAC_AVL_REMOVE_BALANCE(base_t, _node);               \
