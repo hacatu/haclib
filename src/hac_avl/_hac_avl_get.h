@@ -8,6 +8,16 @@
 	n;                                                                 \
 })//END __HAC_AVL_CLIMB
 
+#define /*size_t*/__HAC_AVL_HEIGHT(base_t, /*__HAC_AVL_NODE_T**/n) ({  \
+	__HAC_AVL_NODE_T(base_t) *_n_ = (n);                               \
+	size_t _h = 0;                                                     \
+	while(_n_){                                                        \
+		_n_ = _n_->k >= 0 ? _n_->a : _n_->b;                           \
+		++_h;                                                          \
+	}                                                                  \
+	_h;                                                                \
+})//END __HAC_AVL_HEIGHT
+
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEAREST(base_t, /*__HAC_AVL_NODE_T**/root, /*base_t*/key, comp) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = root;                               \
 	int _o;                                                            \
