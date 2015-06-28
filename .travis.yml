@@ -10,5 +10,5 @@ compiler:
   - gcc-4.9
 script:
   echo "cc gcc-4.9" > test.conf;
-  echo "cflags -Wall -std=c99 -I~/src/" >> test.conf;
+  echo "cflags -Wall -c -std=c99 -I~/src/" >> test.conf;
   make PY=python3 test

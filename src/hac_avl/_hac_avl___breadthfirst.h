@@ -8,9 +8,9 @@
  */
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_BREADTHFIRST(base_t, /*__HAC_AVL_NODE_T**/n) (n)
 
-#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_BREADTHFIRST_D(base_t, /*__HAC_AVL_NODE_T**/n, /*size_t*/h, /*size_t*/dh) ({
-	
-})
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_BREADTHFIRST_D(base_t, /*__HAC_AVL_NODE_T**/n, /*size_t*/h, /*size_t*/dh) ({\
+	                                                                   \
+})//END __HAC_AVL_FIRST_BREADTHFIRST_D
 
 #define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_BREADTHFIRST(base_t, /*__HAC_AVL_NODE_T**/n) ({\
 	__HAC_AVL_NODE_T(base_t) *_n = (n);                                \
