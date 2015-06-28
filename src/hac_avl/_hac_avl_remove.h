@@ -76,7 +76,7 @@
 	base_t _val = (val);                                               \
 	if(_avl->r){                                                       \
 		_root = __HAC_AVL_REMOVE(base_t, _avl->r, _val, comp);         \
-		_ret = !((size_t)_root%alignof(__HAC_AVL_NODE_T(base_t)));/*_root%align is 0 if _root is aligned to align.*/\
+		_ret = !((size_t)_root%__alignof__(__HAC_AVL_NODE_T(base_t)));/*_root%align is 0 if _root is aligned to align.*/\
 		if(_ret){/*_root is aligned*/                                  \
 			_avl->r = _root;                                           \
 		}                                                              \

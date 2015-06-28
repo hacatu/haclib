@@ -6,6 +6,7 @@
 #define __HAC_UTIL__
 
 #include <stdlib.h>
+#include <stddef.h>
 
 /**
  * Explicitly create a void value, suitable to be the last statement in a statment expression that should be void.
@@ -14,17 +15,12 @@
 
 #if defined(__GNUC__) && !defined(__clang__)
 /**
- * Example: AUTOTYPEOF(expr) identifier = expr;
+ * Example: HAC_AUTO_T(expr) identifier = expr;
  * If you want to get the type of something for any purpose other than declaring one variable, you should use __typeof__(expr).
  */
-#define AUTOTYPEOF(expr) __auto_type
+#define HAC_AUTO_T(expr) __auto_type
 #else
-#define AUTOTYPEOF(expr) __typeof__(expr)
-#endif
-
-#ifndef alignof
-#include <stddef.h>
-#define alignof(type) offsetof(struct{char c; type a;}, a)
+#define HAC_AUTO_T(expr) __typeof__(expr)
 #endif
 
 /**
@@ -50,7 +46,7 @@
  * @return the absolute value of a.
  */
 #define HAC_ABS(a) ({                                                  \
-	AUTOTYPEOF(a) _a = (a);                                            \
+	HAC_AUTO_T(a) _a = (a);                                            \
 	_a < 0 ? -_a : _a;                                                 \
 })//END HAC_ABS
 
@@ -62,7 +58,7 @@
  * @return the sign value of a.
  */
 #define HAC_SGN(a) ({                                                  \
-	AUTOTYPEOF(a) _a = (a);                                            \
+	HAC_AUTO_T(a) _a = (a);                                            \
 	_a < 0 ? -1 : _a > 0 ? 1 : 0;                                      \
 })//END HAC_SGN
 
@@ -73,8 +69,8 @@
  * @return the larger of a and b.
  */
 #define HAC_MAX(a, b) ({                                               \
-	AUTOTYPEOF(a) _a = (a);                                            \
-	AUTOTYPEOF(b) _b = (b);                                            \
+	HAC_AUTO_T(a) _a = (a);                                            \
+	HAC_AUTO_T(b) _b = (b);                                            \
 	_b > _a ? _b : _a;                                                 \
 })//END HAC_MAX
 
@@ -85,17 +81,21 @@
  * @return the smaller of a and b.
  */
 #define HAC_MIN(a, b) ({                                               \
-	AUTOTYPEOF(a) _a = (a);                                            \
-	AUTOTYPEOF(b) _b = (b);                                            \
+	HAC_AUTO_T(a) _a = (a);                                            \
+	HAC_AUTO_T(b) _b = (b);                                            \
 	_b < _a ? _b : _a;                                                 \
 })//END HAC_MIN
 
 /**
  * @brief a do nothing function to set breakpoints in these macros.
- * If in gdb, do `breakpoint HAC_BREAKPOINT` and then `command <number>` with the number of the breakpoint.
+ * If in gdb, do `breakpoint HAC_BREAKPOINT` or `breakpoint HAC_BREAKPOINT if c`
+ * and then `command <number>` with the number of the breakpoint.
  * Set the command to `frame 1`: this will back out of HAC_BREAKPOINT and let you debug some real code.
+ * @param msg any description you like, gdb will display it for you, to aid in figuring out which HAC_BREAKPOINT is stopped at.
+ * @param c a condition for the breakpoint.  These arguments are not actually used by HAC_BREAKPOINT because it does nothing,
+ * but are useful for gdb.
  */
-void HAC_BREAKPOINT(void){}
+void HAC_BREAKPOINT(const char *msg, int c){}
 
 #endif
 

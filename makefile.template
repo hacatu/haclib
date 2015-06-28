@@ -1,0 +1,12 @@
+CC = {cc}
+CFLAGS = {cflags}
+LDFLAGS = {ldflags}
+SRCFILES = {srcfiles}
+OBJFILES = $(SRCFILES:.c=.o)
+
+test.test: $(OBJFILES)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ $<
+

@@ -10,7 +10,7 @@
  */
 #define HAC_VEC_FOLDL(base_t, vec, init, expr) ({                      \
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
-	AUTOTYPEOF(init) l = (init);                                       \
+	HAC_AUTO_T(init) l = (init);                                       \
 	base_t e;                                                          \
 	for(int _i = _vec->n - 1; _i >= 0; --_i){                          \
 		e = _vec->a[_i];                                               \

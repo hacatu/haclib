@@ -10,7 +10,7 @@
  */
 #define HAC_SEQ_FOLDR(base_t, seq, init, expr) ({                      \
 	HAC_SEQ_T(base_t) *_seq = (seq);                                   \
-	AUTOTYPEOF(init) l = (init);                                       \
+	HAC_AUTO_T(init) l = (init);                                       \
 	HAC_SEQ_FOREACH(base_t, _seq, ({                                   \
 		l = ({expr;});                                                 \
 	}));                                                               \

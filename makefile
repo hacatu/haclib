@@ -9,7 +9,7 @@ test:
 	$(PY) test/test.py
 
 clean:
-	-find . -type f -name '*.test' -delete; find . -type f -name '*.o' -delete
+	-find . -type f -name '*.test' -delete; find . -type f -name '*.o' -delete; find . -type f -name '*.output' -delete
 
 install:
 	cp src/* $(INCLUDE)

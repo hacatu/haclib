@@ -135,6 +135,24 @@
 	_ret;                                                              \
 })//END __HAC_AVL_PREV_INORDER
 
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_FIRST_BREADTHFIRST(base_t, /*__HAC_AVL_NODE_T**/n) (n)
+
+#define /*__HAC_AVL_NODE_T**/__HAC_AVL_NEXT_BREADTHFIRST(base_t, /*__HAC_AVL_NODE_T**/n) ({\
+	__HAC_AVL_NODE_T(base_t) *_n, *_t = NULL;                          \
+	size_t _dh = 0;                                                    \
+	while(_n->p){                                                      \
+		if(_n->p->b != _n){                                            \
+			if((_t = __HAC_AVL_FIRST_BREADTHFIRST_DH(base_t, _n, _dh))){\
+				break;                                                 \
+			}                                                          \
+		}                                                              \
+		_n = _n->p;                                                    \
+		++_dh;                                                         \
+	}                                                                  \
+	++_dh;                                                             \
+	return __HAC_AVL_BREADTHFIRST_DH(base_t, _n, _dh);                 \
+})//END __HAC_AVL_NEXT_BREADTHFIRST
+
 #define /*void*/__HAC_AVL_PRINT(base_t, /*__HAC_AVL_NODE_T**/root) ({  \
 	for(__HAC_AVL_NODE_T(base_t) *_it = __HAC_AVL_FIRST_INORDER(base_t, root); _it; _it = __HAC_AVL_NEXT_INORDER(base_t, _it)){\
 		printf("%i,", _it->v);                                         \
