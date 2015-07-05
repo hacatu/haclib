@@ -84,3 +84,20 @@
 	_ret;                                                              \
 })//END HAC_VEC_FROM
 
+/**
+ * @brief Creates a vector from an argument list.
+ * Variadic macros are cool.
+ * @param base_t the base type.
+ * @param elems... the elements to put in the vector.
+ * @return a vector with all of the elements in elems..., except base_t obviously.
+ */
+#define HAC_VEC_LIST(base_t, elems...) ({                              \
+	base_t _arr[] = {elems...};                                        \
+	HAC_VEC_T(base_t) _ret = __HAC_VEC_NEW(base_t, sizeof(_arr)/sizeof(base_t));\
+	if(_ret.a){                                                        \
+		memcpy(_ret.a, _arr, sizeof(_arr));                            \
+		_ret.n = sizeof(_arr)/sizeof(base_t);                          \
+	}                                                                  \
+	_ret;                                                              \
+})//END HAC_VEC_LIST
+

@@ -12,8 +12,8 @@ clean:
 	-find . -type f -name '*.test' -delete; find . -type f -name '*.o' -delete; find . -type f -name '*.output' -delete
 
 install:
-	cp src/* $(INCLUDE)
+	cp -r src/* $(INCLUDE)
 
 uninstall:
-	-rm -r $(INCLUDE)/hac_*
+	-rm -r $(INCLUDE)/hac{_*,lib.h}
 

@@ -48,6 +48,7 @@
  * @param base_t the base type.
  * @param size the number of elements to copy from array.
  * @param array the array to copy from (eg an array, a pointer, or the a member of a vector).
+ * @return a sequence with the first size elements of array.
  */
 #define HAC_SEQ_FROM(base_t, size, array) ({                           \
 	size_t _m = (size);                                                \
@@ -64,4 +65,27 @@
 	}                                                                  \
 	_ret;                                                              \
 })//END HAC_SEQ_FROM
+
+/**
+ * @brief Creates a sequence from an argument list.
+ * Variadic macros are cool.
+ * @param base_t the base type.
+ * @param elems... the elements to put in the sequence.
+ * @return a vector with all of the elements in elems..., except base_t obviously.
+ */
+#define HAC_SEQ_LIST(base_t, elems...) ({                              \
+	base_t _a[] = {elems};                                             \
+	size_t _m = sizeof(_a)/sizeof(base_t);                             \
+	HAC_SEQ_T(base_t) _ret = HAC_SEQ_EMPTY(base_t);                    \
+	for(size_t _i = 0; _i < _m; ++_i){                                 \
+		if(!__HAC_SEQ_PUSHR_NN(base_t, &_ret, _a[_i])){                \
+			HAC_SEQ_DELETE(base_t, &_ret);                             \
+			break;                                                     \
+		}                                                              \
+	}                                                                  \
+	if(_ret.a){                                                        \
+		_ret.n = _m;                                                   \
+	}                                                                  \
+	_ret;                                                              \
+})//END HAC_SEQ_LIST
 
