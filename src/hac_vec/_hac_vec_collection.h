@@ -17,6 +17,7 @@
 			returnvoid;                                                \
 		}));                                                           \
 	}                                                                  \
-	_ret;/*TODO: add HAC_VEC_TRIM(base_t, vec, size) and use it here.*/\
+	HAC_VEC_TRIM(base_t, &_ret);                                       \
+	_ret;                                                              \
 })//END HAC_VEC_FILTER
 

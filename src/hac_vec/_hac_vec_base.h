@@ -101,3 +101,51 @@
 	_ret;                                                              \
 })//END HAC_VEC_LIST
 
+/**
+ * @brief Change the storage allocated for a vector.
+ * If the specified size is smaller than the used size (NOT allocated size), nothing is done.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector to increase storage for.
+ * @param size the new size.
+ * @return 1 on allocation success, 0 on failure.
+ */
+#define HAC_VEC_RSIZE(base_t, vec, size) ({                            \
+	HAC_VEC_T(base_t) *_vec = (vec);                                   \
+	size_t _size = (size);                                             \
+	int _ret = 1;                                                      \
+	if(_size > _vec->n){                                               \
+		base_t *_t = realloc(_vec->a, _size*sizeof(base_t));           \
+		if(!_t){                                                       \
+			_ret = 0;                                                  \
+		}else{                                                         \
+			_vec->a = _t;                                              \
+			_vec->m = _size;                                           \
+		}                                                              \
+	}                                                                  \
+	_ret;                                                              \
+})//END HAC_VEC_RESERVE
+
+/**
+ * @brief Reduces allocated storage to used storage.
+ * Use optionally when a vector is known to be done growing.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector.
+ */
+#define HAC_VEC_TRIM(base_t, vec) ({                                   \
+	HAC_VEC_T(base_t) *_vec = (vec);                                   \
+	_vec->a = realloc(_vec->a, _vec->n*sizeof(base_t));                \
+	_vec->m = _vec->n;                                                 \
+})//END HAC_VEC_TRIM
+
+/**
+ * @brief Clears a vector without deallocating space.
+ * Note that if the elements have dynamic allocations associated with them,
+ * they should be cleared first using HAC_VEC_FOREACH.  Also, this does not
+ * overwrite existing data at all, just marks the vector as containing 0 elements.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector.
+ */
+#define HAC_VEC_CLEAR(base_t, vec) ({                                  \
+	(vec)->n = 0;                                                      \
+})//END HAC_VEC_CLEAR
+

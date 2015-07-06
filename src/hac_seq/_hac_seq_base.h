@@ -71,7 +71,7 @@
  * Variadic macros are cool.
  * @param base_t the base type.
  * @param elems... the elements to put in the sequence.
- * @return a vector with all of the elements in elems..., except base_t obviously.
+ * @return a sequence with all of the elements in elems..., except base_t obviously.
  */
 #define HAC_SEQ_LIST(base_t, elems...) ({                              \
 	base_t _a[] = {elems};                                             \

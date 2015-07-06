@@ -64,3 +64,26 @@
 	_from;                                                             \
 })//END HAC_AVL_FROM
 
+/**
+ * @brief Creates an avl tree from an argument list.
+ * Variadic macros are cool.
+ * @param base_t the base type.
+ * @param elems... the elements to put in the avl tree.
+ * @return an avl tree with all of the elements in elems..., except base_t obviously.
+ */
+#define HAC_AVL_LIST(base_t, elems...) ({                              \
+	base_t _a[] = {elems};                                             \
+	size_t _m = sizeof(_a)/sizeof(base_t);                             \
+	HAC_AVL_T(base_t) _ret = HAC_AVL_EMPTY(base_t);                    \
+	for(size_t _i = 0; _i < _m; ++_i){                                 \
+		if(!__HAC_AVL_INSERT(base_t, &_ret, _a[_i])){                  \
+			HAC_AVL_DELETE(base_t, &_ret);                             \
+			break;                                                     \
+		}                                                              \
+	}                                                                  \
+	if(_ret.a){                                                        \
+		_ret.n = _m;                                                   \
+	}                                                                  \
+	_ret;                                                              \
+})//END HAC_AVL_LIST
+
