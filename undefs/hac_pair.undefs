@@ -1,8 +1,0 @@
-#undef __HAC_PAIR__
-
-#undef __HAC_PAIR_T(base_t)
-#undef HAC_PAIR_T(base_t)
-#undef HAC_PAIR_T_NEW(base_t)
-#undef HAC_PAIR_MAKE(base_t,
-#undef HAC_PAIR_SWAP(base_t,
-#undef HAC_PAIR_COPY(base_t,
