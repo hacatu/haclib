@@ -62,7 +62,7 @@
 
 #define /*size_t*/__HAC_VEC_PARTITION(base_t, /*HAC_VEC_T**/vec, /*size_t*/i1, /*size_t*/i2, comp, swap) ({\
 	size_t _a_ = i1, _b_ = i2 - 1, i, j;                               \
-	base_t _p_ = __HAC_VEC_PIVOT(base_t, vec, i1, i2, comp), e1, e2;   \
+	size_t _p_ = __HAC_VEC_PIVOT(base_t, vec, i1, i2, comp), e1, e2;   \
 	HAC_VEC_T(base_t) *v = vec;                                        \
 	while(1){                                                          \
 		while(({e1 = vec->a[_a_]; e2 = vec->a[_p_]; comp;}) < 0){      \

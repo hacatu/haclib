@@ -1,0 +1,3 @@
+#undef __HAC_OBJ__
+
+#undef HAC_O_CALL(self,

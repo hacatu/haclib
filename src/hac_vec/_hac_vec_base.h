@@ -92,7 +92,7 @@
  * @return a vector with all of the elements in elems..., except base_t obviously.
  */
 #define HAC_VEC_LIST(base_t, elems...) ({                              \
-	base_t _arr[] = {elems...};                                        \
+	base_t _arr[] = {elems};                                           \
 	HAC_VEC_T(base_t) _ret = __HAC_VEC_NEW(base_t, sizeof(_arr)/sizeof(base_t));\
 	if(_ret.a){                                                        \
 		memcpy(_ret.a, _arr, sizeof(_arr));                            \
@@ -109,7 +109,7 @@
  * @param size the new size.
  * @return 1 on allocation success, 0 on failure.
  */
-#define HAC_VEC_RSIZE(base_t, vec, size) ({                            \
+#define HAC_VEC_RESIZE(base_t, vec, size) ({                           \
 	HAC_VEC_T(base_t) *_vec = (vec);                                   \
 	size_t _size = (size);                                             \
 	int _ret = 1;                                                      \
@@ -123,7 +123,7 @@
 		}                                                              \
 	}                                                                  \
 	_ret;                                                              \
-})//END HAC_VEC_RESERVE
+})//END HAC_VEC_RESIZE
 
 /**
  * @brief Reduces allocated storage to used storage.

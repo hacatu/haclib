@@ -1,0 +1,13 @@
+#undef __HAC_IT__
+
+#undef __HAC_IT_T(ctnr_t)
+#undef HAC_IT_T(ctnr_t)
+#undef HAC_IT_PREV(it)
+#undef HAC_IT_COPY(it)
+#undef HAC_IT_V(it)
+#undef HAC_IT_EQ(ita,
+#undef HAC_IT_NEXT(it)
+#undef HAC_IT_NEXT_BY(it,
+#undef HAC_IT_PREV_BY(it,
+#undef HAC_IT_COMP(ita,
+#undef HAC_IT_GET(it,

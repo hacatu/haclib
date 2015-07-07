@@ -13,6 +13,13 @@
  */
 #define returnvoid ((void)0)
 
+#define __HAC_PASTE(a, b) (a##b)
+
+/**
+ * Token pasting wrapped in a macro to ensure argument evaluation
+ */
+#define HAC_PASTE(a, b) __HAC_PASTE(a, b)
+
 #if defined(__GNUC__) && !defined(__clang__)
 /**
  * Example: HAC_AUTO_T(expr) identifier = expr;
