@@ -31,9 +31,13 @@ int comp(int a, int b){
 	return 0;
 }
 
-int main(void){
+int main(int argc, char *argv[]){
+	if(argc != 2){
+		puts("Call this test with a random seed as the only argument.");
+		return 1;
+	}
 	HAC_VEC_T_NEW(int);
-	srand(time(NULL));
+	srand(atoll(argv[1]));
 	HAC_VEC_T(int) vec = HAC_VEC_RANGE(int, 1, 100, 1);
 	HAC_VEC_SHUFFLE(int, &vec, HAC_VEC_SWAP(int, v, i, j), rand_interval(m, n));
 	HAC_VEC_SORT(int, &vec, comp(e1, e2), HAC_VEC_SWAP(int, v, i, j));

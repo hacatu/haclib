@@ -10,7 +10,7 @@ class Test:
 		self.test = test
 		self.expected = expected
 		self.seed = seed
-		self.runs = runs
+		self.runs = int(runs)
 	def __call__(self):
 		def getSeed():
 			return [str(random.randint(0, 2**32 - 1))] if self.seed else []
@@ -18,19 +18,25 @@ class Test:
 			print("Test.fail")
 			return False
 		test = ["./{test}".format(test=self.test)]
-		if self.seed:
+		if self.seed and self.seed != "time":
 			random.seed(self.seed)
 		with open("{path}/test.output".format(path=self.path), "w+") as outfile:
+			if self.runs == 1:
+				print("{path}/{test}".format(path=self.path, test=self.test))
+			else:
+				print("{path}/{test} x{runs}".format(path=self.path, test=self.test, runs=self.runs))
 			for _ in range(0, self.runs):
-				print(self.path)
-				status = subprocess.call(test + getSeed(), cwd=self.path, stdout=outfile)
+				command = test + getSeed()
+				status = subprocess.call(command, cwd=self.path, stdout=outfile)
 				outfile.seek(0)
 				if status:
+					print(command)
 					printFile(outfile)
 					return False
 				if self.expected:
 					status = subprocess.call(["diff", "-q", self.expected, "test.output"], cwd=self.path)
 					if status:
+						print(command)
 						printFile(outfile)
 						return False
 			printFile(outfile)

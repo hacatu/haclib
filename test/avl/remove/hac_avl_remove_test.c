@@ -47,5 +47,6 @@ int main(void){
 		}
 		--i;
 	}
+	//All nodes have been removed so deleting is not needed.
 }
 
