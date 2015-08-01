@@ -85,3 +85,21 @@
 	_nearest;                                                          \
 })//END HAC_AVL_GET
 
+#define __HAC_AVL_CONTAINS(base_t, avl, key, comp) ({                  \
+	__HAC_AVL_NODE_T(base_t) *_n = __HAC_AVL_NEAREST(base_t, avl, key, comp);\
+	_n && ({base_t e1 = _n->v, e2 = key; comp;})                       \
+})
+
+/**
+ * @brief determine if a key value is in an avl tree.
+ * @param base_t the base type.
+ * @param avl a pointer to the tree to search.
+ * @param key the value to look for in avl
+ * @param comp an expression containing e1 and e2 (the elements to compare).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
+ * @return 1 if avl contains key, 0 otherwise.
+ */
+#define HAC_AVL_CONTAINS(base_t, avl, key, comp) ({                    \
+	__HAC_AVL_NODE_T(base_t) *_nearest = HAC_AVL_NEAREST(base_t, avl, key, comp);\
+	_nearest && ({base_t e1 = _nearest->v, e2 = key; comp;})           \
+})
+

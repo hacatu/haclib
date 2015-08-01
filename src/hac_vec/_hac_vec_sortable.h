@@ -130,3 +130,42 @@
 	__HAC_VEC_QSORT(base_t, _vec, 0, _vec->n, comp, swap);             \
 })//END HAC_VEC_SORT
 
+/**
+ * @brief Finds an index of key in a sorted vector or -1 if key is not in vec.
+ * If key is in vec more than once, any index with key may be returned.
+ * Uses binary search.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector to search.
+ * @param key the value to find.
+ * @param comp an expression containing e1 and e2 (the elements to be compared).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
+ */
+#define HAC_VEC_INDEX_S(base_t, vec, key, comp) ({                     \
+	HAC_VEC_T(base_t) *_vec = (vec);                                   \
+	base_t _key = (key);                                               \
+	size_t _a = 0, _b = _vec->n, _m;                                   \
+	int _o, _ret = -1;                                                 \
+	while(_a < _b){                                                    \
+		_m = _a/2 + _b/2;                                              \
+		_o = ({base_t e1 = _key, e2 = _vec->a[_m]; comp;});            \
+		if(_o > 0){                                                    \
+			_a = _m + 1;                                               \
+		}else if(_o < 0){                                              \
+			_b = _m;                                                   \
+		}else{                                                         \
+			_ret = _m;                                                 \
+			break;                                                     \
+		}                                                              \
+	}                                                                  \
+	_ret;                                                              \
+})//END HAC_VEC_INDEX_S
+
+/**
+ * @brief Finds if key is in a sorted vector.
+ * Uses binary search.
+ * @param base_t the base type.
+ * @param vec a pointer to the vector to search.
+ * @param key the value to find.
+ * @param comp an expression containing e1 and e2 (the elements to be compared).  Should evaluate < 0 if e1 < e2, > 0 if e1 > e2, and == 0 if e1 == e2.  Remember that just using - will sometimes cause overflow.
+ */
+#define HAC_VEC_CONTAINS_S(base_t, vec, key, comp) (HAC_VEC_INDEX_S(base_t, vec, key, comp) != -1)
+
